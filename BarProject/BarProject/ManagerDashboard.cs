@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace BarProject
 {
-    public partial class Form1 : Form
+    public partial class ManagerDashboard : Form
     {
-        public Form1()
+        public ManagerDashboard(UserModel userModel)
         {
             InitializeComponent();
+
+            user = userModel;
+
+            DataController dataController = new DataController();
         }
+
+       public  UserModel user = new UserModel();
     }
 }

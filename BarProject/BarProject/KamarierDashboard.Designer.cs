@@ -1,6 +1,6 @@
 ﻿namespace BarProject
 {
-    partial class Form1
+    partial class KamarierDashboard
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // KamarierDashboard
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Name = "KamarierDashboard";
+            this.Text = "Dashboard";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
     }
 }
-
