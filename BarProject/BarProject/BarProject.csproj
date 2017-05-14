@@ -53,6 +53,12 @@
     <Compile Include="KamarierDashboard.Designer.cs">
       <DependentUpon>KamarierDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="KategoriForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KategoriForm.Designer.cs">
+      <DependentUpon>KategoriForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,9 +79,18 @@
     <Compile Include="Regjistrim.Designer.cs">
       <DependentUpon>Regjistrim.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShtoKategoriForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShtoKategoriForm.Designer.cs">
+      <DependentUpon>ShtoKategoriForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserModel.cs" />
     <EmbeddedResource Include="KamarierDashboard.resx">
       <DependentUpon>KamarierDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KategoriForm.resx">
+      <DependentUpon>KategoriForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -94,6 +109,9 @@
     </Compile>
     <EmbeddedResource Include="Regjistrim.resx">
       <DependentUpon>Regjistrim.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShtoKategoriForm.resx">
+      <DependentUpon>ShtoKategoriForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
