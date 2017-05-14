@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Collections;
 using System.IO;
+using System.Windows.Forms;
 
 namespace BarProject
 {
@@ -103,6 +104,119 @@ namespace BarProject
             }
         }
 
+
+        public bool shtoKategori(string emerKategori, string pershkrimKategori, PictureBox fotoKategori)
+        {
+
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                /*Start a local transaction*/
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                /*Enlist a command in the current transaction*/
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                /*initializing memory stream class for creating a stream of binary numbers*/
+                MemoryStream ms = new MemoryStream();
+
+                /*saving the image in raw format from picture box*/
+                fotoKategori.Image.Save(ms, fotoKategori.Image.RawFormat);
+
+                 /*Array of Binary numbers that have been converted*/
+                byte[] foto = ms.GetBuffer();
+
+                /*closing the memory stream*/
+                ms.Close();
+
+
+                try
+                {
+                    command.Parameters.AddWithValue("@emri", emerKategori);
+                    command.Parameters.AddWithValue("@pershkrimi", pershkrimKategori);
+                    command.Parameters.AddWithValue("@foto", foto);
+
+                    command.CommandText = 
+                        "Insert into Kategoria (EmriKategori, PershkrimKategori, FotoKategori) values (@emri, @pershkrimi, @foto)";
+
+                    command.ExecuteNonQuery();
+
+                    // Commit the transaction.
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+                }
+                catch(Exception e)
+                {
+                    connection.Close();
+                    return false;
+                }
+
+            }
+        }
+
+
+        public ArrayList ngarkoKategorite()
+        {
+            ArrayList kategoriList = new ArrayList();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT ID , EmriKategori, FotoKategori from Kategoria", connection);
+
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        DataModel model = new DataModel();
+                        model.ID = reader.GetInt32(0);
+                        model.Emri = reader.GetString(1);
+                        model.Foto = (byte[])reader[2];
+
+                        kategoriList.Add(model);
+                    }
+                }
+
+                reader.Close();
+            }
+
+            return kategoriList;
+        }
+
+        public bool fshiKategori(int kategoriID)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    SqlCommand command = new SqlCommand("Delete from Kategoria where ID = ' " + kategoriID + "'", connection);
+
+                    connection.Open();
+
+                    if (command.ExecuteNonQuery() > 0)
+                    {
+                        connection.Close();
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+            }
+            catch(Exception )
+            {
+                return false;
+            }
+        }
 
 
     }

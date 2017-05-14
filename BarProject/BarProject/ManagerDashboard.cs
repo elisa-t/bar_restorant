@@ -22,5 +22,13 @@ namespace BarProject
         }
 
        public  UserModel user = new UserModel();
+
+       private void KategoriButton_Click(object sender, EventArgs e)
+       {
+           KategoriForm kategori = new KategoriForm(user);
+
+           kategori.Show();
+
+       }
     }
 }

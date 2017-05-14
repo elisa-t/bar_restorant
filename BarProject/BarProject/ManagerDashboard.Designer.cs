@@ -28,19 +28,94 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.ShitjeButton = new System.Windows.Forms.Button();
+            this.FurnizimButton = new System.Windows.Forms.Button();
+            this.TavolineButton = new System.Windows.Forms.Button();
+            this.FurnitorButton = new System.Windows.Forms.Button();
+            this.ProduktButton = new System.Windows.Forms.Button();
+            this.KategoriButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // ShitjeButton
+            // 
+            this.ShitjeButton.Location = new System.Drawing.Point(434, 225);
+            this.ShitjeButton.Name = "ShitjeButton";
+            this.ShitjeButton.Size = new System.Drawing.Size(140, 85);
+            this.ShitjeButton.TabIndex = 11;
+            this.ShitjeButton.Text = "SHITJE";
+            this.ShitjeButton.UseVisualStyleBackColor = true;
+            // 
+            // FurnizimButton
+            // 
+            this.FurnizimButton.Location = new System.Drawing.Point(91, 225);
+            this.FurnizimButton.Name = "FurnizimButton";
+            this.FurnizimButton.Size = new System.Drawing.Size(140, 85);
+            this.FurnizimButton.TabIndex = 10;
+            this.FurnizimButton.Text = "FURNIZIM";
+            this.FurnizimButton.UseVisualStyleBackColor = true;
+            // 
+            // TavolineButton
+            // 
+            this.TavolineButton.Location = new System.Drawing.Point(262, 225);
+            this.TavolineButton.Name = "TavolineButton";
+            this.TavolineButton.Size = new System.Drawing.Size(140, 85);
+            this.TavolineButton.TabIndex = 9;
+            this.TavolineButton.Text = "TAVOLINA";
+            this.TavolineButton.UseVisualStyleBackColor = true;
+            // 
+            // FurnitorButton
+            // 
+            this.FurnitorButton.Location = new System.Drawing.Point(434, 72);
+            this.FurnitorButton.Name = "FurnitorButton";
+            this.FurnitorButton.Size = new System.Drawing.Size(140, 85);
+            this.FurnitorButton.TabIndex = 8;
+            this.FurnitorButton.Text = "FURNITOR";
+            this.FurnitorButton.UseVisualStyleBackColor = true;
+            // 
+            // ProduktButton
+            // 
+            this.ProduktButton.Location = new System.Drawing.Point(262, 72);
+            this.ProduktButton.Name = "ProduktButton";
+            this.ProduktButton.Size = new System.Drawing.Size(140, 85);
+            this.ProduktButton.TabIndex = 7;
+            this.ProduktButton.Text = "PRODUKT";
+            this.ProduktButton.UseVisualStyleBackColor = true;
+            // 
+            // KategoriButton
+            // 
+            this.KategoriButton.Location = new System.Drawing.Point(91, 72);
+            this.KategoriButton.Name = "KategoriButton";
+            this.KategoriButton.Size = new System.Drawing.Size(140, 85);
+            this.KategoriButton.TabIndex = 6;
+            this.KategoriButton.Text = "KATEGORI";
+            this.KategoriButton.UseVisualStyleBackColor = true;
+            this.KategoriButton.Click += new System.EventHandler(this.KategoriButton_Click);
             // 
             // ManagerDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(665, 382);
+            this.Controls.Add(this.ShitjeButton);
+            this.Controls.Add(this.FurnizimButton);
+            this.Controls.Add(this.TavolineButton);
+            this.Controls.Add(this.FurnitorButton);
+            this.Controls.Add(this.ProduktButton);
+            this.Controls.Add(this.KategoriButton);
             this.Name = "ManagerDashboard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dashboard";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Button ShitjeButton;
+        private System.Windows.Forms.Button FurnizimButton;
+        private System.Windows.Forms.Button TavolineButton;
+        private System.Windows.Forms.Button FurnitorButton;
+        private System.Windows.Forms.Button ProduktButton;
+        private System.Windows.Forms.Button KategoriButton;
     }
 }
