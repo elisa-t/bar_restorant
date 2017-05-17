@@ -67,9 +67,30 @@ namespace BarProject
                 else if (KategoriListDataGridView.Columns[e.ColumnIndex].Name == "ViewKategori")
                 {
 
+                    DataModel kategori = new DataModel();
+                    int kategoriID  = Convert.ToInt32(KategoriListDataGridView.Rows[e.RowIndex].Cells["KategoriID"].Value);
+
+                    DataController dc = new DataController();
+
+                    kategori = dc.getKategori(kategoriID);
+
+                    ViewKategoriForm viewKategori = new ViewKategoriForm(kategori);
+
+                    viewKategori.Show();
                 }
                 else if (KategoriListDataGridView.Columns[e.ColumnIndex].Name == "EditKategori")
                 {
+                    DataModel kategoria = new DataModel();
+                    int Id = Convert.ToInt32(KategoriListDataGridView.Rows[e.RowIndex].Cells["KategoriID"].Value);
+
+                    DataController dc = new DataController();
+
+                    kategoria = dc.getKategori(Id);
+
+                    EditKategoriForm editKategoriForm = new EditKategoriForm(kategoria);
+
+                    editKategoriForm.Show();
+
 
                 }
             }
