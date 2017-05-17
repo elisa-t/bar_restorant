@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BarProject
 {
-    class DataModel
+    public class DataModel
     {
         public int ID;
         public string Emri;

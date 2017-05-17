@@ -86,6 +86,12 @@
       <DependentUpon>ShtoKategoriForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UserModel.cs" />
+    <Compile Include="ViewKategoriForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewKategoriForm.Designer.cs">
+      <DependentUpon>ViewKategoriForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="KamarierDashboard.resx">
       <DependentUpon>KamarierDashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ShtoKategoriForm.resx">
       <DependentUpon>ShtoKategoriForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewKategoriForm.resx">
+      <DependentUpon>ViewKategoriForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

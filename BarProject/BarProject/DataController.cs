@@ -219,5 +219,76 @@ namespace BarProject
         }
 
 
+        public DataModel getKategori (int kategori)
+        {
+            DataModel model = new DataModel();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT ID , EmriKategori, PershkrimKategori, FotoKategori from Kategoria", connection);
+
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while(reader.Read())
+                    {
+                        model.ID = reader.GetInt32(0);
+                        model.Emri = reader.GetString(1);
+                        model.Pershkrimi = reader.GetString(2);
+                        model.Foto = (byte[])reader[3];
+                    }
+                }
+                reader.Close();
+            }
+            return model;
+        }
+
+        public bool editKategori(DataModel kategoriModel)
+        {
+            using(SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                /*Start a local transaction*/
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                /*Enlist a command in the current transaction*/
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+                    command.Parameters.AddWithValue("@KategoriID", kategoriModel.ID);
+                    command.Parameters.AddWithValue("@Emri", kategoriModel.Emri);
+                    command.Parameters.AddWithValue("@Pershkrimi", kategoriModel.Pershkrimi);
+                    command.Parameters.AddWithValue("@Foto", kategoriModel.Foto);
+
+                    command.CommandText =
+                        "Update Kategoria set Emri = @Emri, Pershkrimi = @Pershkrimi, Foto = @Foto where ID = @KategoriID";
+
+                    command.ExecuteNonQuery();
+
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+                }
+                catch(Exception)
+                {
+                    connection.Close();
+                    return false;
+                }
+
+            }
+
+        }
+
+
+
     }
 }
