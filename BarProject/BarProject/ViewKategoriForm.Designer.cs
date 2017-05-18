@@ -116,7 +116,6 @@
             this.Name = "ViewKategoriForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ViewKategoriForm";
-            this.Load += new System.EventHandler(this.ViewKategoriForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.FotoBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

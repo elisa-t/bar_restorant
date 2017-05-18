@@ -255,7 +255,7 @@ namespace BarProject
                 /*Start a local transaction*/
                 SqlTransaction sqlTran = connection.BeginTransaction();
 
-                /*Enlist a command in the current transaction*/
+                /*Enlist a command in the current transaction*/ 
                 SqlCommand command = connection.CreateCommand();
                 command.Transaction = sqlTran;
 
@@ -288,6 +288,45 @@ namespace BarProject
 
         }
 
+        public bool ShtoTavolina (string s)
+        {
+            return true;
+        }
+
+        public bool ShtoFurnitor(string s)
+        {
+            return true;
+        }
+
+        public ArrayList ngarkoTavolina()
+        {
+            return null;
+        }
+
+        public bool fshiTavolina(int i)
+        {
+            return true;
+        }
+
+        public ArrayList ngarkoTFurnitor()
+        {
+            return null;
+        }
+
+        public DataModel getTavoline(int i)
+        {
+            return null;
+        }
+
+        public bool editTavolina(DataModel i)
+        {
+            return true;
+        }
+
+        public bool fshiFurnitor(int i)
+        {
+            return true;
+        }
 
 
     }

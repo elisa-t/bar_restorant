@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ShtoKategoriButton = new System.Windows.Forms.Button();
+            this.EditKategoriButton = new System.Windows.Forms.Button();
             this.ZgjidhFotoButton = new System.Windows.Forms.Button();
             this.FotoBox = new System.Windows.Forms.PictureBox();
             this.PershkrimBox = new System.Windows.Forms.RichTextBox();
@@ -39,15 +39,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.FotoBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // ShtoKategoriButton
+            // EditKategoriButton
             // 
-            this.ShtoKategoriButton.Location = new System.Drawing.Point(63, 264);
-            this.ShtoKategoriButton.Name = "ShtoKategoriButton";
-            this.ShtoKategoriButton.Size = new System.Drawing.Size(147, 54);
-            this.ShtoKategoriButton.TabIndex = 15;
-            this.ShtoKategoriButton.Text = "Shto Kategori";
-            this.ShtoKategoriButton.UseVisualStyleBackColor = true;
-            this.ShtoKategoriButton.Click += new System.EventHandler(this.ShtoKategoriButton_Click);
+            this.EditKategoriButton.Location = new System.Drawing.Point(63, 264);
+            this.EditKategoriButton.Name = "EditKategoriButton";
+            this.EditKategoriButton.Size = new System.Drawing.Size(147, 54);
+            this.EditKategoriButton.TabIndex = 15;
+            this.EditKategoriButton.Text = "Modifiko Kategori";
+            this.EditKategoriButton.UseVisualStyleBackColor = true;
+            this.EditKategoriButton.Click += new System.EventHandler(this.EditKategoriButton_Click);
             // 
             // ZgjidhFotoButton
             // 
@@ -114,7 +114,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 352);
-            this.Controls.Add(this.ShtoKategoriButton);
+            this.Controls.Add(this.EditKategoriButton);
             this.Controls.Add(this.ZgjidhFotoButton);
             this.Controls.Add(this.FotoBox);
             this.Controls.Add(this.PershkrimBox);
@@ -125,7 +125,7 @@
             this.Name = "EditKategoriForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Kategori";
-            this.Load += new System.EventHandler(this.EditKategoriForm_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditKategoriForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.FotoBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -134,7 +134,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button ShtoKategoriButton;
+        private System.Windows.Forms.Button EditKategoriButton;
         private System.Windows.Forms.Button ZgjidhFotoButton;
         private System.Windows.Forms.PictureBox FotoBox;
         private System.Windows.Forms.RichTextBox PershkrimBox;

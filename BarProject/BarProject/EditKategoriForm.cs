@@ -19,12 +19,6 @@ namespace BarProject
 
             editModel = model;
 
-        }
-
-        DataModel editModel = new DataModel();
-
-        private void EditKategoriForm_Load(object sender, EventArgs e)
-        {
             this.EmriBox.Text = editModel.Emri;
             this.PershkrimBox.Text = editModel.Pershkrimi;
 
@@ -38,6 +32,8 @@ namespace BarProject
             this.FotoBox.Image = bm;
 
         }
+
+        DataModel editModel = new DataModel();
 
         private void ZgjidhFotoButton_Click(object sender, EventArgs e)
         {
@@ -55,7 +51,7 @@ namespace BarProject
             }
         }
 
-        private void ShtoKategoriButton_Click(object sender, EventArgs e)
+        private void EditKategoriButton_Click(object sender, EventArgs e)
         {
             DataController dataController = new DataController();
 
@@ -87,9 +83,20 @@ namespace BarProject
             }
             else
             {
-                MessageBox.Show("Kategoria nuk u modifikua!");
+                if (MessageBox.Show("Kategoria nuk u modifikua!") == DialogResult.OK)
+                {
+                    KategoriForm form = new KategoriForm();
+                    this.Close();
+                    form.Show();
+                }
             }
 
+        }
+
+        private void EditKategoriForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            KategoriForm form = new KategoriForm();
+            form.Show();
         }
 
 

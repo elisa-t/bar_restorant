@@ -95,7 +95,6 @@
             this.Name = "TavolinaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tavolina";
-            this.Load += new System.EventHandler(this.TavolinaForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.TavolineGridView)).EndInit();
             this.ResumeLayout(false);
 

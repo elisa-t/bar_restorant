@@ -18,12 +18,7 @@ namespace BarProject
             InitializeComponent();
 
             kategoriModel = model;
-        }
 
-        DataModel kategoriModel = new DataModel();
-
-        private void ViewKategoriForm_Load(object sender, EventArgs e)
-        {
             this.EmriBox.Text = kategoriModel.Emri;
             this.PershkrimiBox.Text = kategoriModel.Pershkrimi;
 
@@ -35,7 +30,10 @@ namespace BarProject
             mStream.Dispose();
 
             this.FotoBox.Image = bm;
+
         }
+
+        DataModel kategoriModel = new DataModel();
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
