@@ -47,6 +47,12 @@
   <ItemGroup>
     <Compile Include="DataController.cs" />
     <Compile Include="DataModel.cs" />
+    <Compile Include="EditKategoriForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditKategoriForm.Designer.cs">
+      <DependentUpon>EditKategoriForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="KamarierDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +98,9 @@
     <Compile Include="ViewKategoriForm.Designer.cs">
       <DependentUpon>ViewKategoriForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="EditKategoriForm.resx">
+      <DependentUpon>EditKategoriForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="KamarierDashboard.resx">
       <DependentUpon>KamarierDashboard.cs</DependentUpon>
     </EmbeddedResource>

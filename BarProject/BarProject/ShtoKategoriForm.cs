@@ -44,7 +44,12 @@ namespace BarProject
 
             if (dataController.shtoKategori(emer, pershkrimi, foto))
             {
-                MessageBox.Show("Kategoria u shtua");
+                if (MessageBox.Show("Kategoria u shtua") == DialogResult.OK)
+                {
+                    KategoriForm form = new KategoriForm();
+                    this.Close();
+                    form.Show();
+                }
             }
             else
                 MessageBox.Show("Kategoria nuk u shtua!");

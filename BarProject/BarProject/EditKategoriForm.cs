@@ -18,6 +18,7 @@ namespace BarProject
             InitializeComponent();
 
             editModel = model;
+
         }
 
         DataModel editModel = new DataModel();
@@ -77,7 +78,12 @@ namespace BarProject
 
             if(dataController.editKategori(editModel))
             {
-                MessageBox.Show("Kategoria u modifikua me sukses");
+               if ( MessageBox.Show("Kategoria u modifikua me sukses") == DialogResult.OK)
+               {
+                   KategoriForm form = new KategoriForm();
+                   this.Close();
+                   form.Show();
+               }
             }
             else
             {

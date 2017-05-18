@@ -152,7 +152,7 @@ namespace BarProject
                     return true;
 
                 }
-                catch(Exception e)
+                catch(Exception )
                 {
                     connection.Close();
                     return false;
@@ -267,7 +267,7 @@ namespace BarProject
                     command.Parameters.AddWithValue("@Foto", kategoriModel.Foto);
 
                     command.CommandText =
-                        "Update Kategoria set Emri = @Emri, Pershkrimi = @Pershkrimi, Foto = @Foto where ID = @KategoriID";
+                        "Update Kategoria set EmriKategori = @Emri, PershkrimKategori = @Pershkrimi, FotoKategori = @Foto where ID = @KategoriID";
 
                     command.ExecuteNonQuery();
 
