@@ -12,13 +12,9 @@ namespace BarProject
 {
     public partial class KategoriForm : Form
     {
-        UserModel user = new UserModel();
-
-        public KategoriForm(UserModel userModel)
+        public KategoriForm()
         {
             InitializeComponent();
-
-            user = userModel;
 
             DataController dataController = new DataController();
         }
@@ -26,6 +22,8 @@ namespace BarProject
         private void ShtoKategoriButton_Click(object sender, EventArgs e)
         {
             ShtoKategoriForm shtoKategoriForm = new ShtoKategoriForm();
+
+            this.Close();
 
             shtoKategoriForm.Show();
         }
@@ -88,6 +86,8 @@ namespace BarProject
                     kategoria = dc.getKategori(Id);
 
                     EditKategoriForm editKategoriForm = new EditKategoriForm(kategoria);
+
+                    this.Close();
 
                     editKategoriForm.Show();
 

@@ -25,7 +25,7 @@ namespace BarProject
 
        private void KategoriButton_Click(object sender, EventArgs e)
        {
-           KategoriForm kategori = new KategoriForm(user);
+           KategoriForm kategori = new KategoriForm();
 
            kategori.Show();
 
