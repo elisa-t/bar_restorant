@@ -16,6 +16,10 @@ namespace BarProject
         {
             InitializeComponent();
             DataController dataController = new DataController();
+            foreach (DataModel tavolina in dataController.ngarkoTavolina())
+            {
+                TavolineGridView.Rows.Add(tavolina.ID, tavolina.Emri);
+            }
         }
 
         private void ShtoTavolinaButton_Click(object sender, EventArgs e)
@@ -25,16 +29,6 @@ namespace BarProject
             this.Close();
         }
 
-        private void TavolinaForm_Load(object sender, EventArgs e)
-        {
-           
-            DataController datacontroller = new DataController();
-
-            foreach (DataModel tavolina in datacontroller.ngarkoTavolina())
-            {
-                TavolineGridView.Rows.Add(tavolina.ID, tavolina.Emri);
-            }
-           }
 
         private void TavolineGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

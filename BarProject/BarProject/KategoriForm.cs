@@ -17,6 +17,11 @@ namespace BarProject
             InitializeComponent();
 
             DataController dataController = new DataController();
+
+            foreach (DataModel kategori in dataController.ngarkoKategorite())
+            {
+                KategoriListDataGridView.Rows.Add(kategori.ID, kategori.Emri, kategori.Foto);
+            }
         }
 
         private void ShtoKategoriButton_Click(object sender, EventArgs e)
@@ -28,15 +33,6 @@ namespace BarProject
             shtoKategoriForm.Show();
         }
 
-        private void KategoriForm_Load(object sender, EventArgs e)
-        {
-            DataController dc = new DataController();
-
-            foreach (DataModel kategori in dc.ngarkoKategorite())
-            {
-                KategoriListDataGridView.Rows.Add(kategori.ID, kategori.Emri, kategori.Foto);
-            }
-        }
 
         private void KategoriListDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

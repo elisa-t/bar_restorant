@@ -53,6 +53,18 @@
     <Compile Include="EditKategoriForm.Designer.cs">
       <DependentUpon>EditKategoriForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditTavoline.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditTavoline.Designer.cs">
+      <DependentUpon>EditTavoline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FurnitorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FurnitorForm.Designer.cs">
+      <DependentUpon>FurnitorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="KamarierDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,11 +97,29 @@
     <Compile Include="Regjistrim.Designer.cs">
       <DependentUpon>Regjistrim.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShtoFurnitorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShtoFurnitorForm.Designer.cs">
+      <DependentUpon>ShtoFurnitorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShtoKategoriForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ShtoKategoriForm.Designer.cs">
       <DependentUpon>ShtoKategoriForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShtoTavolinaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShtoTavolinaForm.Designer.cs">
+      <DependentUpon>ShtoTavolinaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TavolinaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TavolinaForm.Designer.cs">
+      <DependentUpon>TavolinaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UserModel.cs" />
     <Compile Include="ViewKategoriForm.cs">
@@ -100,6 +130,12 @@
     </Compile>
     <EmbeddedResource Include="EditKategoriForm.resx">
       <DependentUpon>EditKategoriForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditTavoline.resx">
+      <DependentUpon>EditTavoline.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FurnitorForm.resx">
+      <DependentUpon>FurnitorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KamarierDashboard.resx">
       <DependentUpon>KamarierDashboard.cs</DependentUpon>
@@ -125,8 +161,17 @@
     <EmbeddedResource Include="Regjistrim.resx">
       <DependentUpon>Regjistrim.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ShtoFurnitorForm.resx">
+      <DependentUpon>ShtoFurnitorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ShtoKategoriForm.resx">
       <DependentUpon>ShtoKategoriForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShtoTavolinaForm.resx">
+      <DependentUpon>ShtoTavolinaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TavolinaForm.resx">
+      <DependentUpon>TavolinaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewKategoriForm.resx">
       <DependentUpon>ViewKategoriForm.cs</DependentUpon>

@@ -52,7 +52,20 @@ namespace BarProject
                 }
             }
             else
-                MessageBox.Show("Kategoria nuk u shtua!");
+            {
+               if ( MessageBox.Show("Kategoria nuk u shtua!") == DialogResult.OK)
+               {
+                   KategoriForm form = new KategoriForm();
+                   this.Close();
+                   form.Show();
+               }
+            }
+        }
+
+        private void ShtoKategoriForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            KategoriForm form = new KategoriForm();
+            form.Show();
         }
 
     }

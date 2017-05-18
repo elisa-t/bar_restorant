@@ -125,6 +125,7 @@
             this.Name = "ShtoKategoriForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Shto Kategori";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ShtoKategoriForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.FotoBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
