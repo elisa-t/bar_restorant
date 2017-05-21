@@ -28,12 +28,18 @@ namespace BarProject
               if(  MessageBox.Show("Tavolina u shtua") == DialogResult.OK )
               {
                   this.Close();
-                  TavolinaForm tav = new TavolinaForm();
-                  tav.Show();
+                  TavolinaForm tavolina = new TavolinaForm();
+                  tavolina.Show();
               }
             }
             else
                 MessageBox.Show("Tavolina nuk u shtua");
+        }
+
+        private void ShtoTavolinaForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            TavolinaForm tavolina = new TavolinaForm();
+            tavolina.Show();
         }
     }
 }

@@ -71,6 +71,7 @@
             this.Name = "ShtoTavolinaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Shto Tavolina";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ShtoTavolinaForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

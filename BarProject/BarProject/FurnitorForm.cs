@@ -12,18 +12,16 @@ namespace BarProject
 {
     public partial class FurnitorForm : Form
     {
-        UserModel user = new UserModel();
-
-        public FurnitorForm(UserModel userModel)
+        public FurnitorForm()
         {
             InitializeComponent();
-            user = userModel;
             DataController dataController = new DataController();
         }
 
         private void ShtoFurnitorButton_Click(object sender, EventArgs e)
         {
             ShtoFurnitorForm shtoFurnitor = new ShtoFurnitorForm();
+            this.Close();
             shtoFurnitor.Show();
         }
 
@@ -60,10 +58,19 @@ namespace BarProject
 
                 else if (FurnitorGridView.Columns[e.ColumnIndex].Name == "editFurnitor")
                 {
+                    DataModel furnitorModel = new DataModel();
+                    int Id = Convert.ToInt32(FurnitorGridView.Rows[e.RowIndex].Cells["idFurnitor"].Value);
+                    DataController dataController = new DataController();
+
+                    furnitorModel = dataController.getFurnitor(Id);
+                    EditFurnitorForm editFurnitor = new EditFurnitorForm(furnitorModel);
+                    this.Close();
+                    editFurnitor.Show();
+                }
                   
                 }
             }
         }
 
     }
-}
+

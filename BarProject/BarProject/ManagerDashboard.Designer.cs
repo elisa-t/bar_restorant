@@ -34,6 +34,8 @@
             this.FurnitorButton = new System.Windows.Forms.Button();
             this.ProduktButton = new System.Windows.Forms.Button();
             this.KategoriButton = new System.Windows.Forms.Button();
+            this.LogoutButton = new System.Windows.Forms.Button();
+            this.CredentialLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ShitjeButton
@@ -62,6 +64,7 @@
             this.TavolineButton.TabIndex = 9;
             this.TavolineButton.Text = "TAVOLINA";
             this.TavolineButton.UseVisualStyleBackColor = true;
+            this.TavolineButton.Click += new System.EventHandler(this.TavolineButton_Click);
             // 
             // FurnitorButton
             // 
@@ -71,6 +74,7 @@
             this.FurnitorButton.TabIndex = 8;
             this.FurnitorButton.Text = "FURNITOR";
             this.FurnitorButton.UseVisualStyleBackColor = true;
+            this.FurnitorButton.Click += new System.EventHandler(this.FurnitorButton_Click);
             // 
             // ProduktButton
             // 
@@ -80,6 +84,7 @@
             this.ProduktButton.TabIndex = 7;
             this.ProduktButton.Text = "PRODUKT";
             this.ProduktButton.UseVisualStyleBackColor = true;
+            this.ProduktButton.Click += new System.EventHandler(this.ProduktButton_Click);
             // 
             // KategoriButton
             // 
@@ -91,11 +96,32 @@
             this.KategoriButton.UseVisualStyleBackColor = true;
             this.KategoriButton.Click += new System.EventHandler(this.KategoriButton_Click);
             // 
+            // LogoutButton
+            // 
+            this.LogoutButton.Location = new System.Drawing.Point(506, 12);
+            this.LogoutButton.Name = "LogoutButton";
+            this.LogoutButton.Size = new System.Drawing.Size(114, 41);
+            this.LogoutButton.TabIndex = 12;
+            this.LogoutButton.Text = "DIL";
+            this.LogoutButton.UseVisualStyleBackColor = true;
+            this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
+            // 
+            // CredentialLabel
+            // 
+            this.CredentialLabel.AutoSize = true;
+            this.CredentialLabel.Location = new System.Drawing.Point(446, 26);
+            this.CredentialLabel.Name = "CredentialLabel";
+            this.CredentialLabel.Size = new System.Drawing.Size(35, 13);
+            this.CredentialLabel.TabIndex = 13;
+            this.CredentialLabel.Text = "label1";
+            // 
             // ManagerDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(665, 382);
+            this.Controls.Add(this.CredentialLabel);
+            this.Controls.Add(this.LogoutButton);
             this.Controls.Add(this.ShitjeButton);
             this.Controls.Add(this.FurnizimButton);
             this.Controls.Add(this.TavolineButton);
@@ -105,7 +131,9 @@
             this.Name = "ManagerDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dashboard";
+            this.Load += new System.EventHandler(this.ManagerDashboard_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -117,5 +145,7 @@
         private System.Windows.Forms.Button FurnitorButton;
         private System.Windows.Forms.Button ProduktButton;
         private System.Windows.Forms.Button KategoriButton;
+        private System.Windows.Forms.Button LogoutButton;
+        private System.Windows.Forms.Label CredentialLabel;
     }
 }

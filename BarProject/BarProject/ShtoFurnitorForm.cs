@@ -23,10 +23,21 @@ namespace BarProject
             string emri = EmriFurnitortextBox.Text;
             if (dataController.ShtoFurnitor(emri))
             {
-                MessageBox.Show("Furnitori u shtua");
+                if (MessageBox.Show("Furnitori u shtua") == DialogResult.OK)
+                {
+                    this.Close();
+                    FurnitorForm furnitor = new FurnitorForm();
+                    furnitor.Show();
+                }
             }
             else
                 MessageBox.Show("Furnitori nuk u shtua");
+        }
+
+        private void ShtoFurnitorForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FurnitorForm form = new FurnitorForm();
+            form.Show();
         }
     }
 }

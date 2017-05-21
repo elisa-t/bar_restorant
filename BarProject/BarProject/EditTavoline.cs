@@ -26,16 +26,40 @@ namespace BarProject
             Model.Emri = this.EditEmriBox.Text;
             if (dataController.editTavolina(Model))
             {
-                MessageBox.Show("Tavolina u modifikua");
+                if (MessageBox.Show("Tavolina u modifikua") == DialogResult.OK)
+                {
+                    this.Close();
+                    TavolinaForm tavolina = new TavolinaForm();
+                    tavolina.Show();
+                }
             }
             else
-                MessageBox.Show("Tavolina nuk u modifikua");
+            {
+                if (MessageBox.Show("Tavolina nuk u modifikua") == DialogResult.OK)
+                {
+                    this.Close();
+                    TavolinaForm tavolina = new TavolinaForm();
+                    tavolina.Show();
+                }
+            }
         }
 
         private void EditTavoline_Load(object sender, EventArgs e)
         {
             this.EditEmriBox.Text = Model.Emri;
         }
+
+        private void EditTavoline_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            TavolinaForm tavolineForm = new TavolinaForm();
+            tavolineForm.Show();
+        }
+
+        //private void EditTavoline_FormClosing(object sender, FormClosingEventArgs e)
+       // {
+          //  TavolinaForm tavolineForm = new TavolinaForm();
+            //tavolineForm.Show();
+        //}
 
        
     }
