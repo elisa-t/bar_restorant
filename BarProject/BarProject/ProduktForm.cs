@@ -54,5 +54,76 @@ namespace BarProject
             }
         }
 
+        
+
+
+        private void ShtoButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            ShtoProduktForm produkt = new ShtoProduktForm();
+            produkt.Show();
+        }
+
+        private void ProduktDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (ProduktDataGrid.Columns[e.ColumnIndex].Name == "ViewColumn")
+                {
+                    DataModel produkt = new DataModel();
+                    int produktID = Convert.ToInt32(ProduktDataGrid.Rows[e.RowIndex].Cells["ID"].Value);
+
+                    DataController dc = new DataController();
+
+                    produkt = dc.getProdukt(produktID);
+
+                    string kategoriaName = dc.getKategoriaNameFromProdukt(produktID);
+
+                    ProduktViewForm viewProdukt = new ProduktViewForm(produkt, kategoriaName);
+
+
+
+                    viewProdukt.Show();
+                }
+                else if (ProduktDataGrid.Columns[e.ColumnIndex].Name == "EditColumn")
+                {
+                    DataModel produkti = new DataModel();
+                    int Id = Convert.ToInt32(ProduktDataGrid.Rows[e.RowIndex].Cells["ID"].Value);
+
+                    DataController dc = new DataController();
+
+                    produkti = dc.getProdukt(Id);
+
+                    string kateg = dc.getKategoriaNameFromProdukt(Id);
+
+                    ProduktEditForm editProduktForm = new ProduktEditForm(produkti, kateg);
+
+                    this.Close();
+
+                    editProduktForm.Show();
+                }
+                else if (ProduktDataGrid.Columns[e.ColumnIndex].Name == "DeleteColumn")
+                {
+                    if (MessageBox.Show("Konfirmoni fshirjen?", "Kujdes", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        int produktID = Convert.ToInt32(ProduktDataGrid.Rows[e.RowIndex].Cells["ID"].Value);
+
+                        DataController dc = new DataController();
+
+                        if (dc.fshiProdukt(produktID))
+                        {
+                            MessageBox.Show("Produkti u fshi");
+                            ProduktDataGrid.Rows.RemoveAt(e.RowIndex);
+                        }
+                        else 
+                        {
+                            MessageBox.Show("Produkti nuk u fshi!");
+                        }
+
+                    }
+                }
+            }
+        }
+
     }
 }

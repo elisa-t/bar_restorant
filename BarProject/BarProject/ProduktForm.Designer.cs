@@ -51,6 +51,7 @@
             this.ShtoButton.TabIndex = 0;
             this.ShtoButton.Text = "SHTO";
             this.ShtoButton.UseVisualStyleBackColor = true;
+            this.ShtoButton.Click += new System.EventHandler(this.ShtoButton_Click);
             // 
             // KategoriComboBox
             // 
@@ -87,6 +88,7 @@
             this.ProduktDataGrid.Name = "ProduktDataGrid";
             this.ProduktDataGrid.Size = new System.Drawing.Size(607, 252);
             this.ProduktDataGrid.TabIndex = 3;
+            this.ProduktDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProduktDataGrid_CellContentClick);
             // 
             // ID
             // 
@@ -143,6 +145,7 @@
             this.Controls.Add(this.KategoriComboBox);
             this.Controls.Add(this.ShtoButton);
             this.Name = "ProduktForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProduktForm";
             ((System.ComponentModel.ISupportInitialize)(this.ProduktDataGrid)).EndInit();
             this.ResumeLayout(false);

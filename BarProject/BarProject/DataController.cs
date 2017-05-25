@@ -683,6 +683,169 @@ namespace BarProject
 
             return produktet;
         }
-        
+
+        public bool ShtoProdukt(string emerProdukt, decimal cmimiProdukt, int kategoriaId, string pershkrimProdukt, PictureBox fotoProdukt) 
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlTransaction sqlTran = connection.BeginTransaction();
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                MemoryStream ms = new MemoryStream();
+                fotoProdukt.Image.Save(ms, fotoProdukt.Image.RawFormat);
+                byte[] foto = ms.GetBuffer();
+                ms.Close();
+
+                try
+                {
+                    command.Parameters.AddWithValue("@emri", emerProdukt);
+                    command.Parameters.AddWithValue("@cmimi", cmimiProdukt);
+                    command.Parameters.AddWithValue("@pershkrimi", pershkrimProdukt);
+                    command.Parameters.AddWithValue("@id", kategoriaId);
+                    command.Parameters.AddWithValue("@foto", foto);
+
+                    command.CommandText = "Insert into Produktet (EmerProdukt, CmimProdukt, ProduktKategoriID, PershkrimProdukt, FotoProdukt) values (@emri, @cmimi,  @id, @pershkrimi, @foto)";
+
+                    command.ExecuteNonQuery();
+                    sqlTran.Commit();
+                    connection.Close();
+
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
+                    connection.Close();
+                    return false;
+                }
+
+            }
+        }
+
+        public DataModel getProdukt(int produktID)
+        {
+            DataModel model = new DataModel();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT ID , EmerProdukt, CmimProdukt, PershkrimProdukt, FotoProdukt from Produktet where ID ='" + produktID + "'", connection);
+
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        model.ID = reader.GetInt32(0);
+                        model.Emri = reader.GetString(1);
+                        model.Cmimi = reader.GetDecimal(2);
+                        model.Pershkrimi = reader.GetString(3);
+                        model.Foto = (byte[])reader[4];
+                    }
+                }
+                reader.Close();
+            }
+            return model;
+        }
+
+        public string getKategoriaNameFromProdukt(int produktID)
+        {
+
+            string kategoriName = string.Empty;
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT EmriKategori  from Kategoria where ID = ( SELECT p.ProduktKategoriID FROM Produktet AS p WHERE p.ID = '" + produktID + "') ", connection);
+
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        kategoriName = reader.GetString(0);
+                    }
+                }
+                reader.Close();
+            }
+            return kategoriName;
+        }
+
+
+        public bool fshiProdukt(int produktID)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    SqlCommand command = new SqlCommand("Delete from Produktet where ID = ' " + produktID + "'", connection);
+
+                    connection.Open();
+
+                    if (command.ExecuteNonQuery() > 0)
+                    {
+                        connection.Close();
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
+        public bool editProdukt(int id ,string emri,decimal cmimi,int kategoria,string pershkrimi, byte[] foto)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+                    command.Parameters.AddWithValue("@ID", id);
+                    command.Parameters.AddWithValue("@EmerProdukt",emri);
+                    command.Parameters.AddWithValue("@CmimProdukt", cmimi);
+                    command.Parameters.AddWithValue("@ProduktKategoriID", kategoria);
+                    command.Parameters.AddWithValue("@PershkrimProdukt", pershkrimi);
+                    command.Parameters.AddWithValue("@FotoProdukt", foto);
+
+                    command.CommandText =
+                        "Update Produktet set EmerProdukt = @EmerProdukt, CmimProdukt = @CmimProdukt, ProduktKategoriID = @ProduktKategoriID, PershkrimProdukt = @PershkrimProdukt, FotoProdukt = @FotoProdukt where ID = @ID";
+
+                    command.ExecuteNonQuery();
+
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+                }
+                catch (Exception)
+                {
+                    connection.Close();
+                    return false;
+                }
+
+            }
+
+        }
+
+
     }
 }

@@ -51,7 +51,7 @@ namespace BarProject
                             MessageBox.Show("Kategoria u fshi");
                             KategoriListDataGridView.Rows.RemoveAt(e.RowIndex);
                         }
-                        else if(!dc.fshiKategori(kategoriID))
+                        else 
                         {
                             MessageBox.Show("Kategoria nuk u fshi!");
                         }

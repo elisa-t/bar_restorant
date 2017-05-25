@@ -95,11 +95,23 @@
     <Compile Include="ManagerDashboard.Designer.cs">
       <DependentUpon>ManagerDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProduktEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProduktEditForm.Designer.cs">
+      <DependentUpon>ProduktEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProduktForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProduktForm.Designer.cs">
       <DependentUpon>ProduktForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProduktViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProduktViewForm.Designer.cs">
+      <DependentUpon>ProduktViewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,6 +132,12 @@
     </Compile>
     <Compile Include="ShtoKategoriForm.Designer.cs">
       <DependentUpon>ShtoKategoriForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShtoProduktForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShtoProduktForm.Designer.cs">
+      <DependentUpon>ShtoProduktForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ShtoTavolinaForm.cs">
       <SubType>Form</SubType>
@@ -164,8 +182,14 @@
     <EmbeddedResource Include="ManagerDashboard.resx">
       <DependentUpon>ManagerDashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProduktEditForm.resx">
+      <DependentUpon>ProduktEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProduktForm.resx">
       <DependentUpon>ProduktForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProduktViewForm.resx">
+      <DependentUpon>ProduktViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -184,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ShtoKategoriForm.resx">
       <DependentUpon>ShtoKategoriForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShtoProduktForm.resx">
+      <DependentUpon>ShtoProduktForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ShtoTavolinaForm.resx">
       <DependentUpon>ShtoTavolinaForm.cs</DependentUpon>

@@ -51,7 +51,7 @@ namespace BarProject
                             TavolineGridView.Rows.RemoveAt(e.RowIndex);
                             MessageBox.Show("Tavolina u fshi");
                         }
-                        else if (!dataController.fshiTavolina(ID))
+                        else 
                         {
                             MessageBox.Show("Tavolina nuk u fshi");
                         }

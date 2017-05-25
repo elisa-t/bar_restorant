@@ -49,7 +49,7 @@ namespace BarProject
                             FurnitorGridView.Rows.RemoveAt(e.RowIndex);
                             MessageBox.Show("Furnitori u fshi");
                         }
-                        else if (!dataController.fshiFurnitor(ID))
+                        else
                         {
                             MessageBox.Show("Furnitori nuk u fshi");
                         }
