@@ -22,5 +22,9 @@ namespace BarProject
         public DateTime ShitjeData;
         public int KamarierID;
 
+        public string fatura;
+        public int furnitorID;
+        public DateTime dataFature;
+
     }
 }

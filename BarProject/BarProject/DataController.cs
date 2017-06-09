@@ -530,6 +530,31 @@ namespace BarProject
             return furnitorModel;
         }
 
+        public int getFurnitorID(string furnitorName)
+        {
+            int furnitorID = 0;
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT ID  from Furnitor where EmerFurnitor ='" + furnitorName + "'", connection);
+
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        furnitorID = reader.GetInt32(0);
+
+                    }
+                }
+                reader.Close();
+            }
+            return furnitorID;
+        }
+
         public bool editTavolina(DataModel tavolinaModel)
         {
            using(SqlConnection connection = new SqlConnection(ConnectionString))
@@ -844,6 +869,96 @@ namespace BarProject
 
             }
 
+        }
+
+
+
+        public bool shtoFurnizim (DataModel furnizimi, ArrayList produktet)
+        {
+            int furnizimID = returnFurnizimID();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+                    command.Parameters.AddWithValue("@Fatura", furnizimi.fatura);
+                    command.Parameters.AddWithValue("@DataFurnizim", furnizimi.dataFature);
+                    command.Parameters.AddWithValue("@Totali", furnizimi.Total);
+                    command.Parameters.AddWithValue("@FurnitorID", furnizimi.furnitorID);
+
+
+                    command.CommandText =
+                        "Insert into Furnizim (FurnitorID, NrFature, DataFurnizim, Total) values (@FurnitorID, @Fatura, @DataFurnizim, @Totali)";
+                    command.ExecuteNonQuery();
+
+                    foreach (DataModel model in produktet)
+                    {
+                        command.CommandText =
+                            "Insert into ProduktFurnizim (EmerProdukt, SasiProdukt, CmimProdukt, Total, FurnizimID) values (' " + model.Emri + " ' , '" + model.Sasia + "', '" + model.Cmimi + "', '" + model.Total + "', '" + furnizimID + "' )";
+                        command.ExecuteNonQuery();
+                    }
+
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+                }
+                catch(Exception e)
+                {
+
+                    MessageBox.Show(e.Message);
+                    connection.Close();
+                    return false;
+                }
+
+
+            }
+
+        }
+
+
+
+        public int returnFurnizimID()
+        {
+            int furnizimID = 1;
+            try
+            {
+
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT MAX(ID) FROM Furnizim;", connection);
+                    connection.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            furnizimID = reader.GetInt32(0);
+                        }
+                    }
+                    reader.Close();
+
+                    furnizimID = furnizimID + 1;
+
+                    return furnizimID;
+                }
+            }
+            catch (Exception)
+            {
+                return furnizimID;
+            }
         }
 
 

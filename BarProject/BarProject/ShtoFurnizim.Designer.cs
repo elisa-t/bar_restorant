@@ -33,6 +33,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.FurnitorComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.clearButton = new System.Windows.Forms.Button();
+            this.shtoButton = new System.Windows.Forms.Button();
+            this.cmimiBox = new System.Windows.Forms.TextBox();
+            this.sasiaBox = new System.Windows.Forms.TextBox();
+            this.emriBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.furnizimiDataGrid = new System.Windows.Forms.DataGridView();
             this.EmerProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SasiProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,14 +49,6 @@
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.cancelButton = new System.Windows.Forms.Button();
             this.ruajButton = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.emriBox = new System.Windows.Forms.TextBox();
-            this.sasiaBox = new System.Windows.Forms.TextBox();
-            this.cmimiBox = new System.Windows.Forms.TextBox();
-            this.shtoButton = new System.Windows.Forms.Button();
-            this.clearButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.totalLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
@@ -105,6 +105,74 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "...";
             // 
+            // clearButton
+            // 
+            this.clearButton.Location = new System.Drawing.Point(26, 179);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(63, 27);
+            this.clearButton.TabIndex = 7;
+            this.clearButton.Text = "CLEAR";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            // 
+            // shtoButton
+            // 
+            this.shtoButton.Location = new System.Drawing.Point(110, 179);
+            this.shtoButton.Name = "shtoButton";
+            this.shtoButton.Size = new System.Drawing.Size(63, 28);
+            this.shtoButton.TabIndex = 6;
+            this.shtoButton.Text = "SHTO";
+            this.shtoButton.UseVisualStyleBackColor = true;
+            this.shtoButton.Click += new System.EventHandler(this.shtoButton_Click);
+            // 
+            // cmimiBox
+            // 
+            this.cmimiBox.Location = new System.Drawing.Point(26, 144);
+            this.cmimiBox.Name = "cmimiBox";
+            this.cmimiBox.Size = new System.Drawing.Size(159, 20);
+            this.cmimiBox.TabIndex = 5;
+            // 
+            // sasiaBox
+            // 
+            this.sasiaBox.Location = new System.Drawing.Point(26, 89);
+            this.sasiaBox.Name = "sasiaBox";
+            this.sasiaBox.Size = new System.Drawing.Size(159, 20);
+            this.sasiaBox.TabIndex = 4;
+            // 
+            // emriBox
+            // 
+            this.emriBox.Location = new System.Drawing.Point(26, 37);
+            this.emriBox.Name = "emriBox";
+            this.emriBox.Size = new System.Drawing.Size(159, 20);
+            this.emriBox.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(23, 127);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(34, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Cmimi";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(23, 72);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(33, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Sasia";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(23, 21);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Emri";
+            // 
             // furnizimiDataGrid
             // 
             this.furnizimiDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -119,6 +187,7 @@
             this.furnizimiDataGrid.Name = "furnizimiDataGrid";
             this.furnizimiDataGrid.Size = new System.Drawing.Size(313, 228);
             this.furnizimiDataGrid.TabIndex = 5;
+            this.furnizimiDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.furnizimiDataGrid_CellContentClick);
             // 
             // EmerProdukt
             // 
@@ -167,74 +236,7 @@
             this.ruajButton.TabIndex = 7;
             this.ruajButton.Text = "RUAJ";
             this.ruajButton.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 21);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(27, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Emri";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 72);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(33, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Sasia";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 127);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(34, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Cmimi";
-            // 
-            // emriBox
-            // 
-            this.emriBox.Location = new System.Drawing.Point(26, 37);
-            this.emriBox.Name = "emriBox";
-            this.emriBox.Size = new System.Drawing.Size(159, 20);
-            this.emriBox.TabIndex = 3;
-            // 
-            // sasiaBox
-            // 
-            this.sasiaBox.Location = new System.Drawing.Point(26, 89);
-            this.sasiaBox.Name = "sasiaBox";
-            this.sasiaBox.Size = new System.Drawing.Size(159, 20);
-            this.sasiaBox.TabIndex = 4;
-            // 
-            // cmimiBox
-            // 
-            this.cmimiBox.Location = new System.Drawing.Point(26, 144);
-            this.cmimiBox.Name = "cmimiBox";
-            this.cmimiBox.Size = new System.Drawing.Size(159, 20);
-            this.cmimiBox.TabIndex = 5;
-            // 
-            // shtoButton
-            // 
-            this.shtoButton.Location = new System.Drawing.Point(110, 179);
-            this.shtoButton.Name = "shtoButton";
-            this.shtoButton.Size = new System.Drawing.Size(63, 28);
-            this.shtoButton.TabIndex = 6;
-            this.shtoButton.Text = "SHTO";
-            this.shtoButton.UseVisualStyleBackColor = true;
-            this.shtoButton.Click += new System.EventHandler(this.shtoButton_Click);
-            // 
-            // clearButton
-            // 
-            this.clearButton.Location = new System.Drawing.Point(26, 179);
-            this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(63, 27);
-            this.clearButton.TabIndex = 7;
-            this.clearButton.Text = "CLEAR";
-            this.clearButton.UseVisualStyleBackColor = true;
-            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            this.ruajButton.Click += new System.EventHandler(this.ruajButton_Click);
             // 
             // label6
             // 
