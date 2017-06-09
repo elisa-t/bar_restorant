@@ -55,6 +55,7 @@
             this.FurnizimButton.TabIndex = 10;
             this.FurnizimButton.Text = "FURNIZIM";
             this.FurnizimButton.UseVisualStyleBackColor = true;
+            this.FurnizimButton.Click += new System.EventHandler(this.FurnizimButton_Click);
             // 
             // TavolineButton
             // 

@@ -59,8 +59,14 @@ namespace BarProject
        private void ProduktButton_Click(object sender, EventArgs e)
        {
            ProduktForm produktForm = new ProduktForm();
-           this.Close();
            produktForm.Show();
+       }
+
+       private void FurnizimButton_Click(object sender, EventArgs e)
+       {
+           Furnizim form = new Furnizim();
+           form.Show();
+
        }
     }
 }
