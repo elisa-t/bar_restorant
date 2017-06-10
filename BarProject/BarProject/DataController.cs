@@ -961,6 +961,311 @@ namespace BarProject
             }
         }
 
+        public DataModel returnFurnizim(int furnizimID)
+        {
+            DataModel furnizim = new DataModel();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT ID, FurnitorID, NrFature, Total, DataFurnizim  FROM Furnizim WHERE ID = '" +furnizimID+"';", connection);
+                    connection.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            furnizim.ID = reader.GetInt32(0);
+                            furnizim.furnitorID = reader.GetInt32(1);
+                            furnizim.fatura = reader.GetString(2);
+                            furnizim.Total = reader.GetDecimal(3);
+                            furnizim.dataFature = reader.GetDateTime(4);
+                        }
+                    }
+                    reader.Close();
+
+
+                    return furnizim;
+                }
+            }
+            catch (Exception)
+            {
+                return furnizim;
+            }
+        }
+
+
+        public ArrayList returnProdukteFurnizim(int furnizimID)
+        {
+            ArrayList produktFurnizim = new ArrayList();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT ID, EmerProdukt, SasiProdukt, CmimProdukt, Total FROM ProduktFurnizim WHERE FurnizimID = '" + furnizimID + "';", connection);
+                    connection.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            DataModel model = new DataModel();
+                            model.ID = reader.GetInt32(0);
+                            model.Emri = reader.GetString(1);
+                            model.Sasia = reader.GetInt32(2);
+                            model.Cmimi = reader.GetDecimal(3);
+                            model.Total = reader.GetDecimal(4);
+
+                            produktFurnizim.Add(model);
+                        }
+                    }
+                    reader.Close();
+
+
+                    return produktFurnizim;
+                }
+            }
+            catch (Exception)
+            {
+                return produktFurnizim;
+            }
+        }
+
+
+        public string getFurnitorName(int idFurnitor)
+        {
+            string furnitorName = string.Empty;
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT  EmerFurnitor from Furnitor where ID ='" + idFurnitor + "'", connection);
+
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        furnitorName = reader.GetString(0);
+
+                    }
+                }
+                reader.Close();
+            }
+            return furnitorName;
+        }
+
+
+        public bool fshiProduktFurnizim(int id)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    SqlCommand command = new SqlCommand("Delete from ProduktFurnizim where ID = ' " + id + "'", connection);
+
+                    connection.Open();
+
+                    if (command.ExecuteNonQuery() > 0)
+                    {
+                        connection.Close();
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
+
+
+        public bool editFurnizim(DataModel furnizimi, ArrayList produktet)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+                    command.Parameters.AddWithValue("@ID", furnizimi.ID);
+                    command.Parameters.AddWithValue("@Fatura", furnizimi.fatura);
+                    command.Parameters.AddWithValue("@Totali", furnizimi.Total);
+                    command.Parameters.AddWithValue("@FurnitorID", furnizimi.furnitorID);
+
+
+                    command.CommandText =
+                        "UPDATE Furnizim SET  NrFature = @Fatura, Total =  @Totali, FurnitorID = @FurnitorID  WHERE ID = @ID";
+                    command.ExecuteNonQuery();
+
+                    foreach (DataModel model in produktet)
+                    {
+                        command.CommandText =
+                            "UPDATE ProduktFurnizim SET EmerProdukt = '" + model.Emri + "', SasiProdukt = '" + model.Sasia + "', CmimProdukt = '" + model.Cmimi + "', Total = '" + model.Total + "' WHERE ID = '"+ model.ID +"'";
+                        command.ExecuteNonQuery();
+                    }
+
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+                }
+                catch (Exception e)
+                {
+
+                    MessageBox.Show(e.Message);
+                    connection.Close();
+                    return false;
+                }
+
+
+            }
+
+        }
+
+
+        public bool fshiFurnizim(int furnizimID)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+                    command.CommandText =
+                        "DELETE FROM  ProduktFurnizim WHERE FurnizimID = '" + furnizimID + "'";
+                    command.ExecuteNonQuery();
+
+                    command.CommandText =
+                        "DELETE FROM  Furnizim  WHERE ID = '" + furnizimID + "'";
+                    command.ExecuteNonQuery();
+
+
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+                }
+                catch (Exception e)
+                {
+
+                    MessageBox.Show(e.Message);
+                    connection.Close();
+                    return false;
+                }
+
+
+            }
+
+        }
+
+
+        public ArrayList ngarkoTeGjitheFurnizimet()
+        {
+            ArrayList furnizimet = new ArrayList();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT ID, NrFature, DataFurnizim, Total, FurnitorID FROM Furnizim", connection);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        DataModel furnizim = new DataModel();
+                        furnizim.ID = reader.GetInt32(0);
+                        furnizim.fatura = reader.GetString(1);
+                        furnizim.dataFature = reader.GetDateTime(2);
+                        furnizim.Total = reader.GetDecimal(3);
+                        furnizim.furnitorID = reader.GetInt32(4);
+
+                        furnizimet.Add(furnizim);
+
+                    }
+                }
+            }
+
+            return furnizimet;
+        }
+
+
+        public ArrayList ngarkoFurnizimetNgaFurnitor(int furnitorID)
+        {
+            ArrayList furnizimet = new ArrayList();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT ID, NrFature, DataFurnizim, Total, FurnitorID FROM Furnizim Where FurnitorID = '" + furnitorID + "'", connection);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        DataModel furnizim = new DataModel();
+                        furnizim.ID = reader.GetInt32(0);
+                        furnizim.fatura = reader.GetString(1);
+                        furnizim.dataFature = reader.GetDateTime(2);
+                        furnizim.Total = reader.GetDecimal(3);
+                        furnizim.furnitorID = reader.GetInt32(4);
+
+                        furnizimet.Add(furnizim);
+
+                    }
+                }
+            }
+
+            return furnizimet;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }
