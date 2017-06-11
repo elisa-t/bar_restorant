@@ -26,5 +26,7 @@ namespace BarProject
         public int furnitorID;
         public DateTime dataFature;
 
+        public bool tavolineZene;
+
     }
 }

@@ -355,7 +355,8 @@ namespace BarProject
                 try
                 {
                     command.Parameters.AddWithValue("@emri", emerTavoline);
-                    command.CommandText= "Insert into Tavoline (EmerTavoline) values (@emri)";
+                    command.Parameters.AddWithValue("@zene", false);
+                    command.CommandText = "Insert into Tavoline (EmerTavoline, Zene) values (@emri, @zene)";
                     command.ExecuteNonQuery();
                     sqlTran.Commit();
                     connection.Close();
@@ -404,7 +405,7 @@ namespace BarProject
             ArrayList TavolinaList = new ArrayList();
             using (SqlConnection connection = new SqlConnection(ConnectionString)) 
             {
-                SqlCommand command = new SqlCommand("SELECT ID, EmerTavoline FROM Tavoline" ,connection);
+                SqlCommand command = new SqlCommand("SELECT ID, EmerTavoline, Zene FROM Tavoline" ,connection);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -415,6 +416,7 @@ namespace BarProject
                         DataModel model = new DataModel();
                         model.ID = reader.GetInt32(0);
                         model.Emri = reader.GetString(1);
+                        model.tavolineZene = reader.GetBoolean(2);
                         TavolinaList.Add(model);
                     }
                 }
@@ -450,6 +452,11 @@ namespace BarProject
         }
 
 
+
+
+
+
+
         public ArrayList ngarkoTFurnitor()
         {
             ArrayList FurnitorList = new ArrayList();
@@ -483,7 +490,7 @@ namespace BarProject
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand command = new SqlCommand("SELECT ID , EmerTavoline from Tavoline where ID ='" + idTavoline + "'", connection);
+                SqlCommand command = new SqlCommand("SELECT ID , EmerTavoline, Zene from Tavoline where ID ='" + idTavoline + "'", connection);
 
                 connection.Open();
 
@@ -495,6 +502,7 @@ namespace BarProject
                     {
                         tavolineModel.ID = reader.GetInt32(0);
                         tavolineModel.Emri = reader.GetString(1);
+                        tavolineModel.tavolineZene = reader.GetBoolean(2);
                        
                     }
                 }
@@ -584,6 +592,38 @@ namespace BarProject
            }
 
         }
+
+        public bool rezervoTavolin(int tavolineID)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlTransaction sqlTran = connection.BeginTransaction();
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+                try
+                {
+                    command.Parameters.AddWithValue("@id", tavolineID);
+                    command.Parameters.AddWithValue("@zene", true);
+
+                    command.CommandText = "Update Tavoline set Zene = @zene where ID = @id";
+                    command.ExecuteNonQuery();
+                    sqlTran.Commit();
+                    connection.Close();
+
+                    return true;
+                }
+
+                catch (Exception e)
+                {
+                    connection.Close();
+                    return false;
+                }
+            }
+
+        }
+
+
 
         public bool fshiFurnitor(int idFurnitor)
         {
