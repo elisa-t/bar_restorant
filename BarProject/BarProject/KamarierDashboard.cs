@@ -135,6 +135,8 @@ namespace BarProject
 
                     if (dc.rezervoTavolin(currentTavoline.ID))
                     {
+                        //te krijohet nje shitje me shitje nr, kamarier ID fature e hapur true, tavoline id = currentTavolineID
+
                         MessageBox.Show("Tavolina u rezervua");
                         btn.BackColor = Color.Red;
                     }
@@ -156,7 +158,7 @@ namespace BarProject
 
         void ProduktButton_Click(object sender, EventArgs e)
         {
-
+            //te shtohet shitjeProdukt
         }
 
 
