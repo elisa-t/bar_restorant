@@ -107,7 +107,12 @@ namespace BarProject
 
             if (dc.shtoFurnizim(furnizim, produktet))
             {
-                MessageBox.Show("Furnizimi u shtua");
+                if (MessageBox.Show("Furnizimi u shtua") == DialogResult.OK)
+                {
+                    this.Close();
+                    Furnizim furnizimForm = new Furnizim();
+                    furnizimForm.Show();
+                }
             }
             else
             {
@@ -122,7 +127,14 @@ namespace BarProject
              {
                  if (furnizimiDataGrid.Columns[e.ColumnIndex].Name == "Delete")
                  {
-                     furnizimiDataGrid.Rows.RemoveAt(e.RowIndex);
+
+                     if (furnizimiDataGrid.Rows[e.RowIndex].Cells["EmerProdukt"].Value != null)
+                     {
+                         furnizimiDataGrid.Rows.RemoveAt(e.RowIndex);
+                         totalFurnizim = totalFurnizim - Convert.ToDecimal(furnizimiDataGrid.Rows[e.RowIndex].Cells["TotalProdukt"].Value);
+                         totalLabel.Text = Convert.ToString(totalFurnizim);
+                     }
+                     
                  }
 
              }

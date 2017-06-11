@@ -36,14 +36,14 @@
             this.dataLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.totalLabel = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.furnizimDataGrid = new System.Windows.Forms.DataGridView();
+            this.mbyllButton = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmerProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SasiProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CmimProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mbyllButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.TotalProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.furnizimDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -118,20 +118,30 @@
             this.totalLabel.TabIndex = 7;
             this.totalLabel.Text = "label5";
             // 
-            // dataGridView1
+            // furnizimDataGrid
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.furnizimDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.furnizimDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.furnizimDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.EmerProdukt,
             this.SasiProdukt,
             this.CmimProdukt,
-            this.Total});
-            this.dataGridView1.Location = new System.Drawing.Point(34, 140);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(557, 166);
-            this.dataGridView1.TabIndex = 8;
+            this.TotalProdukt});
+            this.furnizimDataGrid.Location = new System.Drawing.Point(34, 140);
+            this.furnizimDataGrid.Name = "furnizimDataGrid";
+            this.furnizimDataGrid.Size = new System.Drawing.Size(557, 166);
+            this.furnizimDataGrid.TabIndex = 8;
+            // 
+            // mbyllButton
+            // 
+            this.mbyllButton.Location = new System.Drawing.Point(494, 341);
+            this.mbyllButton.Name = "mbyllButton";
+            this.mbyllButton.Size = new System.Drawing.Size(97, 44);
+            this.mbyllButton.TabIndex = 9;
+            this.mbyllButton.Text = "MBYLL";
+            this.mbyllButton.UseVisualStyleBackColor = true;
+            this.mbyllButton.Click += new System.EventHandler(this.mbyllButton_Click);
             // 
             // ID
             // 
@@ -157,20 +167,11 @@
             this.CmimProdukt.Name = "CmimProdukt";
             this.CmimProdukt.ReadOnly = true;
             // 
-            // Total
+            // TotalProdukt
             // 
-            this.Total.HeaderText = "Totali";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            // 
-            // mbyllButton
-            // 
-            this.mbyllButton.Location = new System.Drawing.Point(494, 341);
-            this.mbyllButton.Name = "mbyllButton";
-            this.mbyllButton.Size = new System.Drawing.Size(97, 44);
-            this.mbyllButton.TabIndex = 9;
-            this.mbyllButton.Text = "MBYLL";
-            this.mbyllButton.UseVisualStyleBackColor = true;
+            this.TotalProdukt.HeaderText = "Totali";
+            this.TotalProdukt.Name = "TotalProdukt";
+            this.TotalProdukt.ReadOnly = true;
             // 
             // ViewFurnizim
             // 
@@ -178,7 +179,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(627, 416);
             this.Controls.Add(this.mbyllButton);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.furnizimDataGrid);
             this.Controls.Add(this.totalLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dataLabel);
@@ -189,7 +190,8 @@
             this.Controls.Add(this.label1);
             this.Name = "ViewFurnizim";
             this.Text = "Furnizim";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.ViewFurnizim_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.furnizimDataGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,12 +207,12 @@
         private System.Windows.Forms.Label dataLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label totalLabel;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView furnizimDataGrid;
+        private System.Windows.Forms.Button mbyllButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmerProdukt;
         private System.Windows.Forms.DataGridViewTextBoxColumn SasiProdukt;
         private System.Windows.Forms.DataGridViewTextBoxColumn CmimProdukt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
-        private System.Windows.Forms.Button mbyllButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalProdukt;
     }
 }
