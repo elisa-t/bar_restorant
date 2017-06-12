@@ -110,7 +110,7 @@
             // CredentialLabel
             // 
             this.CredentialLabel.AutoSize = true;
-            this.CredentialLabel.Location = new System.Drawing.Point(446, 26);
+            this.CredentialLabel.Location = new System.Drawing.Point(401, 26);
             this.CredentialLabel.Name = "CredentialLabel";
             this.CredentialLabel.Size = new System.Drawing.Size(35, 13);
             this.CredentialLabel.TabIndex = 13;

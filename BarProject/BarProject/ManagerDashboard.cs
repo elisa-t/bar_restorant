@@ -53,7 +53,7 @@ namespace BarProject
 
        private void ManagerDashboard_Load(object sender, EventArgs e)
        {
-           this.CredentialLabel.Text = user.Emri;
+           this.CredentialLabel.Text = user.Emri + "(menaxher)";
        }
 
        private void ProduktButton_Click(object sender, EventArgs e)

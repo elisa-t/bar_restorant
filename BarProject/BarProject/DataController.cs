@@ -1290,15 +1290,413 @@ namespace BarProject
         }
 
 
+        public bool shtoShitje(DataModel shitje)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
 
 
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+                    command.Parameters.AddWithValue("@ShitjeNr", shitje.ShitjeNr);
+                    command.Parameters.AddWithValue("@KamarierID", shitje.KamarierID);
+                    command.Parameters.AddWithValue("@FatureHapur", shitje.fatureHapur);
+                    command.Parameters.AddWithValue("@TavolineID", shitje.tavolineID);
+                    command.Parameters.AddWithValue("@DataShitje", shitje.ShitjeData);
+                    command.Parameters.AddWithValue("@Total", shitje.Total);
 
 
+                    command.CommandText =
+                        "Insert into Shitje (ShitjeNR, KamarierID, FatureHapur, TavolineID, DataShitje, Total) values (@ShitjeNr, @KamarierID, @FatureHapur, @TavolineID, @DataShitje, @Total)";
+                    command.ExecuteNonQuery();
+
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+                }
+                catch (Exception e)
+                {
+
+                    MessageBox.Show(e.Message);
+                    connection.Close();
+                    return false;
+                }
 
 
+            }
+
+        }
 
 
+        public DataModel getShitjeNgaTavolina(int tavolineID)
+        {
+            DataModel shitje = new DataModel();
 
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT ID, Total  from Shitje where TavolineID ='" + tavolineID + "'  AND FatureHapur = '"+ true + "'", connection);
+
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        shitje.ID = reader.GetInt32(0);
+                        shitje.Total = reader.GetDecimal(1);
+
+                    }
+                }
+                reader.Close();
+            }
+            return shitje;
+        }
+
+
+        public ArrayList ngarkoProdukteNgaShitje(int shitjeID)
+        {
+            ArrayList produkteShitje = new ArrayList();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT ID, EmerProdukt, CmimProdukt, SasiProdukt, TotalProdukt FROM ShitjeProdukt Where ShitjeID = '" + shitjeID + "'", connection);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        DataModel produkt = new DataModel();
+                        produkt.ID = reader.GetInt32(0);
+                        produkt.Emri = reader.GetString(1);
+                        produkt.Cmimi = reader.GetDecimal(2);
+                        produkt.Sasia = reader.GetInt32(3);
+                        produkt.Total = reader.GetDecimal(4);
+
+                        produkteShitje.Add(produkt);
+
+                    }
+                }
+            }
+
+            return produkteShitje;
+        }
+
+        public ArrayList getProdukteShitje(int shitjeID)
+        {
+            ArrayList produkteShitje = new ArrayList();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT ID, EmerProdukt, CmimProdukt, SasiProdukt, TotalProdukt FROM ShitjeProdukt Where ShitjeID = '" + shitjeID + "'", connection);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        DataModel produkt = new DataModel();
+                        produkt.ID = reader.GetInt32(0);
+                        produkt.Emri = reader.GetString(1);
+                        produkt.Cmimi = reader.GetDecimal(2);
+                        produkt.Sasia = reader.GetInt32(3);
+                        produkt.Total = reader.GetDecimal(4);
+
+                        produkteShitje.Add(produkt);
+
+                    }
+                }
+            }
+
+            return produkteShitje;
+        }
+
+
+        public bool produktShitjeEkziston(int shitjeID, string produktEmri)
+        {
+            int produktShitjeID = -1;
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+
+                SqlCommand command = new SqlCommand("SELECT ID FROM ShitjeProdukt Where ShitjeID = '" + shitjeID + "' AND EmerProdukt = '" + produktEmri + "'", connection);
+
+                
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        produktShitjeID = reader.GetInt32(0);
+                    }
+                }
+                reader.Close();
+
+                if (produktShitjeID != -1)
+                    return true;
+                else
+                    return false;
+
+
+            }
+
+        }
+
+        public DataModel getProduktShitjeByName(string produktName)
+        {
+            DataModel produktShitje = new DataModel();
+            
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+
+                SqlCommand command = new SqlCommand("SELECT ID, EmerProdukt, CmimProdukt, SasiProdukt, TotalProdukt FROM ShitjeProdukt Where EmerProdukt = '" + produktName + "'", connection);
+
+                
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        produktShitje.ID = reader.GetInt32(0);
+                        produktShitje.Emri = reader.GetString(1);
+                        produktShitje.Cmimi = reader.GetDecimal(2);
+                        produktShitje.Sasia = reader.GetInt32(3);
+                        produktShitje.Total = reader.GetDecimal(4);
+                    }
+                }
+                reader.Close();
+
+                return produktShitje;
+
+
+            }
+        }
+
+
+        public bool editSasiProduktShitje(DataModel produktShitje)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+
+                connection.Open();
+
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+                    command.Parameters.AddWithValue("@ID", produktShitje.ID);
+                    command.Parameters.AddWithValue("@Sasia", produktShitje.Sasia);
+                    command.Parameters.AddWithValue("@Totali", produktShitje.Total);
+
+
+                    command.CommandText =
+                        "UPDATE ShitjeProdukt SET  SasiProdukt = @Sasia, TotalProdukt =  @Totali  WHERE ID = @ID";
+                    command.ExecuteNonQuery();
+
+                    
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+
+                }
+                catch
+                {
+                    connection.Close();
+                    return false;
+                }
+
+            }
+        }
+
+
+        public bool shtoProduktShitje(DataModel produktShitje)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+                    command.Parameters.AddWithValue("@EmerProdukt", produktShitje.Emri);
+                    command.Parameters.AddWithValue("@CmimProdukt", produktShitje.Cmimi);
+                    command.Parameters.AddWithValue("@SasiProdukt", produktShitje.Sasia);
+                    command.Parameters.AddWithValue("@TotalProdukt", produktShitje.Total);
+                    command.Parameters.AddWithValue("@ShitjeID", produktShitje.ShitjeID);
+
+
+                    command.CommandText =
+                        "Insert into ShitjeProdukt (EmerProdukt, CmimProdukt, SasiProdukt, TotalProdukt, ShitjeID) values (@EmerProdukt, @CmimProdukt, @SasiProdukt, @TotalProdukt, @ShitjeID)";
+                    command.ExecuteNonQuery();
+
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+                }
+                catch (Exception e)
+                {
+
+                    MessageBox.Show(e.Message);
+                    connection.Close();
+                    return false;
+                }
+
+
+            }
+
+        }
+
+
+        public bool mbyllShitje(DataModel shitje)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+
+                connection.Open();
+
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+                    command.Parameters.AddWithValue("@ID", shitje.ID);
+                    command.Parameters.AddWithValue("@Total", shitje.Total);
+                    command.Parameters.AddWithValue("@FatureHapur", shitje.fatureHapur);
+                    command.Parameters.AddWithValue("@ShitjeData", shitje.ShitjeData);
+                    command.Parameters.AddWithValue("@KamarierID", shitje.KamarierID);
+
+
+                    command.CommandText =
+                        "UPDATE Shitje SET  DataShitje = @ShitjeData, KamarierID =  @KamarierID, Total = @Total, FatureHapur = @FatureHapur  WHERE ID = @ID";
+                    command.ExecuteNonQuery();
+
+
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+
+                }
+                catch
+                {
+                    connection.Close();
+                    return false;
+                }
+
+            }
+        }
+
+
+        public bool mbyllTavoline(DataModel tavoline)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+
+                connection.Open();
+
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+                    command.Parameters.AddWithValue("@ID", tavoline.ID);
+                    command.Parameters.AddWithValue("@Zene", tavoline.tavolineZene);
+
+
+                    command.CommandText =
+                        "UPDATE Tavoline SET  Zene = @Zene  WHERE ID = @ID";
+                    command.ExecuteNonQuery();
+
+
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+
+                }
+                catch
+                {
+                    connection.Close();
+                    return false;
+                }
+
+            }
+        }
+
+
+        public int getLatestIDShitje()
+        {
+            int shitjeID = 1;
+            try
+            {
+
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT MAX(ID) FROM Shitje;", connection);
+                    connection.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            shitjeID = reader.GetInt32(0);
+                        }
+                    }
+                    reader.Close();
+
+
+                    return shitjeID;
+                }
+            }
+            catch (Exception)
+            {
+                return shitjeID;
+            }
+        }
 
 
 
