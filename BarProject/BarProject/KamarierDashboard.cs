@@ -200,12 +200,20 @@ namespace BarProject
             //nqs nuk ekziston krijohet nje produktShitje i ri ne databaze dhe shtohet ky ne datagrid
             //
 
+
+
+
             Button ProduktButton = sender as Button;
 
             int produktID = Convert.ToInt32(ProduktButton.Tag);
 
             DataModel produkt = dc.getProdukt(produktID);
 
+            if (selectedShitje.ID <= 0 && selectedTavoline.ID <= 0)
+            {
+                MessageBox.Show("Zgjidhni nje tavoline fillimisht!");
+                return;
+            }
 
 
             if (dc.produktShitjeEkziston(selectedShitje.ID, produkt.Emri))
