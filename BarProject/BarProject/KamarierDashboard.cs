@@ -258,6 +258,7 @@ namespace BarProject
 
                 if (dc.shtoProduktShitje(newProduktShitje))
                 {
+                    newProduktShitje.ID = dc.getLatestProduktShitjeID();
                     produkteDataGrid.Rows.Add(newProduktShitje.ID, newProduktShitje.Emri, newProduktShitje.Cmimi, newProduktShitje.Sasia, newProduktShitje.Total);
                 }
 
@@ -342,6 +343,29 @@ namespace BarProject
 
 
 
+        }
+
+        private void produkteDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (produkteDataGrid.Columns[e.ColumnIndex].Name == "Delete")
+                {
+                    if (MessageBox.Show("Vazhdoni me fshirjen?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        int produktShitjeID = Convert.ToInt32(produkteDataGrid.Rows[e.RowIndex].Cells["ID"].Value);
+
+                        if(dc.fshiProduktShitje(produktShitjeID))
+                        {
+                            MessageBox.Show("Fshirja u krye");
+                            produkteDataGrid.Rows.RemoveAt(e.RowIndex);
+
+                            totalBox.Text = Convert.ToString(llogaritTotalFature());
+                        }
+
+                    }
+                }
+            }
         }
 
 

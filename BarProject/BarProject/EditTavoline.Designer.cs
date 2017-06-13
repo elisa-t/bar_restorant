@@ -71,7 +71,6 @@
             this.Name = "EditTavoline";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Tavoline";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditTavoline_FormClosed);
             this.Load += new System.EventHandler(this.EditTavoline_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

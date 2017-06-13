@@ -71,7 +71,6 @@
             this.Name = "EditFurnitorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EditFurnitorForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditFurnitorForm_FormClosing);
             this.Load += new System.EventHandler(this.EditFurnitorForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

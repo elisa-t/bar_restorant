@@ -93,12 +93,6 @@ namespace BarProject
 
         }
 
-        private void EditKategoriForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            KategoriForm form = new KategoriForm();
-            form.Show();
-        }
-
 
 
 

@@ -149,6 +149,7 @@
             this.produkteDataGrid.Name = "produkteDataGrid";
             this.produkteDataGrid.Size = new System.Drawing.Size(328, 301);
             this.produkteDataGrid.TabIndex = 17;
+            this.produkteDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.produkteDataGrid_CellContentClick);
             // 
             // ID
             // 
