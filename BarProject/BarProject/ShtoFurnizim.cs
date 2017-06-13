@@ -105,14 +105,23 @@ namespace BarProject
                 }
             }
 
-            if (dc.shtoFurnizim(furnizim, produktet))
+            if (dc.shtoFurnizim(furnizim))
             {
-                if (MessageBox.Show("Furnizimi u shtua") == DialogResult.OK)
+
+                int furnizimID = dc.getLatestFurnizimID();
+
+
+                if (dc.shtoProdukteFurnizim(furnizimID, produktet))
                 {
-                    this.Close();
-                    Furnizim furnizimForm = new Furnizim();
-                    furnizimForm.Show();
+                    if (MessageBox.Show("Furnizimi u shtua") == DialogResult.OK)
+                    {
+                        this.Close();
+                        Furnizim furnizimForm = new Furnizim();
+                        furnizimForm.Show();
+                    }
                 }
+
+                
             }
             else
             {
