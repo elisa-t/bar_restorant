@@ -1170,7 +1170,7 @@ namespace BarProject
 
 
 
-        public bool editFurnizim(DataModel furnizimi, ArrayList produktet)
+        public bool editFurnizim(DataModel furnizimi)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
@@ -1194,10 +1194,46 @@ namespace BarProject
                         "UPDATE Furnizim SET  NrFature = @Fatura, Total =  @Totali, FurnitorID = @FurnitorID  WHERE ID = @ID";
                     command.ExecuteNonQuery();
 
+
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+                }
+                catch (Exception e)
+                {
+
+                    MessageBox.Show(e.Message);
+                    connection.Close();
+                    return false;
+                }
+
+
+            }
+
+        }
+
+        public bool editProduktFurnizim(ArrayList produktet)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+
                     foreach (DataModel model in produktet)
                     {
                         command.CommandText =
-                            "UPDATE ProduktFurnizim SET EmerProdukt = '" + model.Emri + "', SasiProdukt = '" + model.Sasia + "', CmimProdukt = '" + model.Cmimi + "', Total = '" + model.Total + "' WHERE ID = '"+ model.ID +"'";
+                            "UPDATE ProduktFurnizim SET EmerProdukt = '" + model.Emri + "', SasiProdukt = '" + model.Sasia + "', CmimProdukt = '" + model.Cmimi + "', Total = '" + model.Total + "' WHERE ID = '" + model.ID + "'";
                         command.ExecuteNonQuery();
                     }
 
@@ -1220,6 +1256,7 @@ namespace BarProject
             }
 
         }
+
 
 
         public bool fshiFurnizim(int furnizimID)
