@@ -126,7 +126,6 @@
             this.Name = "EditKategoriForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Kategori";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditKategoriForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.FotoBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -34,10 +34,5 @@ namespace BarProject
                 MessageBox.Show("Furnitori nuk u shtua");
         }
 
-        private void ShtoFurnitorForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            FurnitorForm form = new FurnitorForm();
-            form.Show();
-        }
     }
 }

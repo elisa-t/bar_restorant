@@ -48,10 +48,5 @@ namespace BarProject
             this.FurnitorEmriBox.Text = furnitor.Emri;
         }
 
-        private void EditFurnitorForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            FurnitorForm furnitor = new FurnitorForm();
-            furnitor.Show();
-        }
     }
 }

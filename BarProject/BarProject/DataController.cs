@@ -1699,6 +1699,83 @@ namespace BarProject
         }
 
 
+        public bool fshiProduktShitje(int produktShitjeID)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+                    command.CommandText =
+                        "DELETE FROM  ShitjeProdukt WHERE ID = '" + produktShitjeID + "'";
+                    command.ExecuteNonQuery();
+
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+                }
+                catch (Exception e)
+                {
+
+                    MessageBox.Show(e.Message);
+                    connection.Close();
+                    return false;
+                }
+
+
+            }
+
+        }
+
+
+
+        public int getLatestProduktShitjeID()
+        {
+            int shitjeID = 1;
+            try
+            {
+
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT MAX(ID) FROM ShitjeProdukt;", connection);
+                    connection.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            shitjeID = reader.GetInt32(0);
+                        }
+                    }
+                    reader.Close();
+
+
+                    return shitjeID;
+                }
+            }
+            catch (Exception)
+            {
+                return shitjeID;
+            }
+        }
+
+
+
+
+
+
 
 
 

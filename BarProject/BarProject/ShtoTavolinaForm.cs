@@ -36,10 +36,5 @@ namespace BarProject
                 MessageBox.Show("Tavolina nuk u shtua");
         }
 
-        private void ShtoTavolinaForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            TavolinaForm tavolina = new TavolinaForm();
-            tavolina.Show();
-        }
     }
 }
