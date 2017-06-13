@@ -21,12 +21,18 @@ namespace BarProject
         public int ShitjeID;
         public DateTime ShitjeData;
         public int KamarierID;
+        public string ShitjeNr;
+        public bool fatureHapur;
+        public int tavolineID;
 
         public string fatura;
         public int furnitorID;
         public DateTime dataFature;
 
         public bool tavolineZene;
+
+
+
 
     }
 }
