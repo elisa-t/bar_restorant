@@ -31,6 +31,12 @@
             this.ruajButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.furnizimDataGrid = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmerProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SasiProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CmimProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.clearButton = new System.Windows.Forms.Button();
             this.shtoButton = new System.Windows.Forms.Button();
@@ -46,12 +52,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.totalLabel = new System.Windows.Forms.Label();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmerProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SasiProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CmimProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.furnizimDataGrid)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -92,6 +92,37 @@
             this.furnizimDataGrid.Size = new System.Drawing.Size(313, 228);
             this.furnizimDataGrid.TabIndex = 13;
             this.furnizimDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.furnizimDataGrid_CellContentClick);
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            // 
+            // EmerProdukt
+            // 
+            this.EmerProdukt.HeaderText = "Emri";
+            this.EmerProdukt.Name = "EmerProdukt";
+            // 
+            // SasiProdukt
+            // 
+            this.SasiProdukt.HeaderText = "Sasia";
+            this.SasiProdukt.Name = "SasiProdukt";
+            // 
+            // CmimProdukt
+            // 
+            this.CmimProdukt.HeaderText = "Cmimi";
+            this.CmimProdukt.Name = "CmimProdukt";
+            // 
+            // TotalProdukt
+            // 
+            this.TotalProdukt.HeaderText = "Totali";
+            this.TotalProdukt.Name = "TotalProdukt";
+            this.TotalProdukt.ReadOnly = true;
+            // 
+            // Delete
+            // 
+            this.Delete.HeaderText = "Delete";
+            this.Delete.Name = "Delete";
             // 
             // groupBox1
             // 
@@ -229,37 +260,6 @@
             this.totalLabel.TabIndex = 17;
             this.totalLabel.Text = "0.00";
             // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            // 
-            // EmerProdukt
-            // 
-            this.EmerProdukt.HeaderText = "Emri";
-            this.EmerProdukt.Name = "EmerProdukt";
-            // 
-            // SasiProdukt
-            // 
-            this.SasiProdukt.HeaderText = "Sasia";
-            this.SasiProdukt.Name = "SasiProdukt";
-            // 
-            // CmimProdukt
-            // 
-            this.CmimProdukt.HeaderText = "Cmimi";
-            this.CmimProdukt.Name = "CmimProdukt";
-            // 
-            // TotalProdukt
-            // 
-            this.TotalProdukt.HeaderText = "Totali";
-            this.TotalProdukt.Name = "TotalProdukt";
-            this.TotalProdukt.ReadOnly = true;
-            // 
-            // Delete
-            // 
-            this.Delete.HeaderText = "Delete";
-            this.Delete.Name = "Delete";
-            // 
             // EditFurnizim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -276,6 +276,7 @@
             this.Controls.Add(this.faturaBox);
             this.Controls.Add(this.label1);
             this.Name = "EditFurnizim";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modifiko Furnizim";
             this.Load += new System.EventHandler(this.EditFurnizim_Load);
             ((System.ComponentModel.ISupportInitialize)(this.furnizimDataGrid)).EndInit();

@@ -44,7 +44,7 @@
             // 
             // MbyllProduktButton
             // 
-            this.MbyllProduktButton.Location = new System.Drawing.Point(92, 370);
+            this.MbyllProduktButton.Location = new System.Drawing.Point(103, 358);
             this.MbyllProduktButton.Name = "MbyllProduktButton";
             this.MbyllProduktButton.Size = new System.Drawing.Size(146, 40);
             this.MbyllProduktButton.TabIndex = 34;
@@ -54,7 +54,7 @@
             // 
             // FotoBox
             // 
-            this.FotoBox.Location = new System.Drawing.Point(61, 250);
+            this.FotoBox.Location = new System.Drawing.Point(55, 224);
             this.FotoBox.Name = "FotoBox";
             this.FotoBox.Size = new System.Drawing.Size(233, 102);
             this.FotoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -65,7 +65,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(58, 223);
+            this.label5.Location = new System.Drawing.Point(52, 197);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(31, 15);
             this.label5.TabIndex = 31;
@@ -75,7 +75,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(58, 154);
+            this.label4.Location = new System.Drawing.Point(52, 145);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 15);
             this.label4.TabIndex = 29;
@@ -85,7 +85,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(58, 92);
+            this.label3.Location = new System.Drawing.Point(52, 92);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 15);
             this.label3.TabIndex = 27;
@@ -95,7 +95,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(58, 48);
+            this.label2.Location = new System.Drawing.Point(52, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 15);
             this.label2.TabIndex = 25;
@@ -105,7 +105,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(58, 9);
+            this.label1.Location = new System.Drawing.Point(52, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 15);
             this.label1.TabIndex = 23;
@@ -141,7 +141,7 @@
             // PershkrimiBox
             // 
             this.PershkrimiBox.AutoSize = true;
-            this.PershkrimiBox.Location = new System.Drawing.Point(195, 156);
+            this.PershkrimiBox.Location = new System.Drawing.Point(195, 147);
             this.PershkrimiBox.Name = "PershkrimiBox";
             this.PershkrimiBox.Size = new System.Drawing.Size(35, 13);
             this.PershkrimiBox.TabIndex = 38;
@@ -151,7 +151,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 423);
+            this.ClientSize = new System.Drawing.Size(345, 423);
             this.Controls.Add(this.PershkrimiBox);
             this.Controls.Add(this.KategoriaBox);
             this.Controls.Add(this.CmimiBox);
@@ -164,6 +164,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "ProduktViewForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProduktViewForm";
             ((System.ComponentModel.ISupportInitialize)(this.FotoBox)).EndInit();
             this.ResumeLayout(false);

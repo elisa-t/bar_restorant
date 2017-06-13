@@ -30,18 +30,18 @@
         {
             this.EditKategoriButton = new System.Windows.Forms.Button();
             this.ZgjidhFotoButton = new System.Windows.Forms.Button();
-            this.FotoBox = new System.Windows.Forms.PictureBox();
             this.PershkrimBox = new System.Windows.Forms.RichTextBox();
             this.EmriBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.FotoBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.FotoBox)).BeginInit();
             this.SuspendLayout();
             // 
             // EditKategoriButton
             // 
-            this.EditKategoriButton.Location = new System.Drawing.Point(63, 264);
+            this.EditKategoriButton.Location = new System.Drawing.Point(50, 316);
             this.EditKategoriButton.Name = "EditKategoriButton";
             this.EditKategoriButton.Size = new System.Drawing.Size(147, 54);
             this.EditKategoriButton.TabIndex = 15;
@@ -51,7 +51,7 @@
             // 
             // ZgjidhFotoButton
             // 
-            this.ZgjidhFotoButton.Location = new System.Drawing.Point(33, 200);
+            this.ZgjidhFotoButton.Location = new System.Drawing.Point(23, 206);
             this.ZgjidhFotoButton.Name = "ZgjidhFotoButton";
             this.ZgjidhFotoButton.Size = new System.Drawing.Size(75, 23);
             this.ZgjidhFotoButton.TabIndex = 14;
@@ -59,19 +59,11 @@
             this.ZgjidhFotoButton.UseVisualStyleBackColor = true;
             this.ZgjidhFotoButton.Click += new System.EventHandler(this.ZgjidhFotoButton_Click);
             // 
-            // FotoBox
-            // 
-            this.FotoBox.Location = new System.Drawing.Point(125, 174);
-            this.FotoBox.Name = "FotoBox";
-            this.FotoBox.Size = new System.Drawing.Size(138, 65);
-            this.FotoBox.TabIndex = 13;
-            this.FotoBox.TabStop = false;
-            // 
             // PershkrimBox
             // 
             this.PershkrimBox.Location = new System.Drawing.Point(125, 84);
             this.PershkrimBox.Name = "PershkrimBox";
-            this.PershkrimBox.Size = new System.Drawing.Size(138, 70);
+            this.PershkrimBox.Size = new System.Drawing.Size(146, 70);
             this.PershkrimBox.TabIndex = 12;
             this.PershkrimBox.Text = "";
             // 
@@ -79,13 +71,13 @@
             // 
             this.EmriBox.Location = new System.Drawing.Point(125, 35);
             this.EmriBox.Name = "EmriBox";
-            this.EmriBox.Size = new System.Drawing.Size(138, 20);
+            this.EmriBox.Size = new System.Drawing.Size(146, 20);
             this.EmriBox.TabIndex = 11;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 174);
+            this.label3.Location = new System.Drawing.Point(20, 174);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(28, 13);
             this.label3.TabIndex = 10;
@@ -94,7 +86,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 87);
+            this.label2.Location = new System.Drawing.Point(20, 87);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 9;
@@ -103,20 +95,29 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 35);
+            this.label1.Location = new System.Drawing.Point(20, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 8;
             this.label1.Text = "Emri";
             // 
+            // FotoBox
+            // 
+            this.FotoBox.Location = new System.Drawing.Point(125, 174);
+            this.FotoBox.Name = "FotoBox";
+            this.FotoBox.Size = new System.Drawing.Size(146, 102);
+            this.FotoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.FotoBox.TabIndex = 16;
+            this.FotoBox.TabStop = false;
+            // 
             // EditKategoriForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 352);
+            this.ClientSize = new System.Drawing.Size(290, 394);
+            this.Controls.Add(this.FotoBox);
             this.Controls.Add(this.EditKategoriButton);
             this.Controls.Add(this.ZgjidhFotoButton);
-            this.Controls.Add(this.FotoBox);
             this.Controls.Add(this.PershkrimBox);
             this.Controls.Add(this.EmriBox);
             this.Controls.Add(this.label3);
@@ -136,11 +137,11 @@
 
         private System.Windows.Forms.Button EditKategoriButton;
         private System.Windows.Forms.Button ZgjidhFotoButton;
-        private System.Windows.Forms.PictureBox FotoBox;
         private System.Windows.Forms.RichTextBox PershkrimBox;
         private System.Windows.Forms.TextBox EmriBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox FotoBox;
     }
 }

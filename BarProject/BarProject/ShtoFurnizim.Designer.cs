@@ -272,6 +272,7 @@
             this.Controls.Add(this.faturaBox);
             this.Controls.Add(this.label1);
             this.Name = "ShtoFurnizim";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Shto Furnizim";
             this.Load += new System.EventHandler(this.ShtoFurnizim_Load);
             this.groupBox1.ResumeLayout(false);

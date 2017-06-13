@@ -37,12 +37,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.totalLabel = new System.Windows.Forms.Label();
             this.furnizimDataGrid = new System.Windows.Forms.DataGridView();
-            this.mbyllButton = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmerProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SasiProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CmimProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalProdukt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mbyllButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.furnizimDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -133,16 +133,6 @@
             this.furnizimDataGrid.Size = new System.Drawing.Size(557, 166);
             this.furnizimDataGrid.TabIndex = 8;
             // 
-            // mbyllButton
-            // 
-            this.mbyllButton.Location = new System.Drawing.Point(494, 341);
-            this.mbyllButton.Name = "mbyllButton";
-            this.mbyllButton.Size = new System.Drawing.Size(97, 44);
-            this.mbyllButton.TabIndex = 9;
-            this.mbyllButton.Text = "MBYLL";
-            this.mbyllButton.UseVisualStyleBackColor = true;
-            this.mbyllButton.Click += new System.EventHandler(this.mbyllButton_Click);
-            // 
             // ID
             // 
             this.ID.HeaderText = "ID";
@@ -173,6 +163,16 @@
             this.TotalProdukt.Name = "TotalProdukt";
             this.TotalProdukt.ReadOnly = true;
             // 
+            // mbyllButton
+            // 
+            this.mbyllButton.Location = new System.Drawing.Point(494, 341);
+            this.mbyllButton.Name = "mbyllButton";
+            this.mbyllButton.Size = new System.Drawing.Size(97, 44);
+            this.mbyllButton.TabIndex = 9;
+            this.mbyllButton.Text = "MBYLL";
+            this.mbyllButton.UseVisualStyleBackColor = true;
+            this.mbyllButton.Click += new System.EventHandler(this.mbyllButton_Click);
+            // 
             // ViewFurnizim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -189,6 +189,7 @@
             this.Controls.Add(this.fatureLabel);
             this.Controls.Add(this.label1);
             this.Name = "ViewFurnizim";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Furnizim";
             this.Load += new System.EventHandler(this.ViewFurnizim_Load);
             ((System.ComponentModel.ISupportInitialize)(this.furnizimDataGrid)).EndInit();

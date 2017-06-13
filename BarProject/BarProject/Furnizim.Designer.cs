@@ -145,6 +145,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ShtoFurnitorButton);
             this.Name = "Furnizim";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Furnizim";
             this.Load += new System.EventHandler(this.Furnizim_Load);
             ((System.ComponentModel.ISupportInitialize)(this.furnizimDataGrid)).EndInit();

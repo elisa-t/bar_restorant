@@ -171,6 +171,7 @@
             this.Controls.Add(this.EmerProduktBox);
             this.Controls.Add(this.label1);
             this.Name = "ProduktEditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProduktEditForm";
             this.Load += new System.EventHandler(this.ProduktEditForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ZgjidhFotoBox)).EndInit();
