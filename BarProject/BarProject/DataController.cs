@@ -913,9 +913,9 @@ namespace BarProject
 
 
 
-        public bool shtoFurnizim (DataModel furnizimi, ArrayList produktet)
+        public bool shtoFurnizim (DataModel furnizimi)
         {
-            int furnizimID = returnFurnizimID();
+            //int furnizimID = returnFurnizimID();
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
@@ -939,12 +939,7 @@ namespace BarProject
                         "Insert into Furnizim (FurnitorID, NrFature, DataFurnizim, Total) values (@FurnitorID, @Fatura, @DataFurnizim, @Totali)";
                     command.ExecuteNonQuery();
 
-                    foreach (DataModel model in produktet)
-                    {
-                        command.CommandText =
-                            "Insert into ProduktFurnizim (EmerProdukt, SasiProdukt, CmimProdukt, Total, FurnizimID) values (' " + model.Emri + " ' , '" + model.Sasia + "', '" + model.Cmimi + "', '" + model.Total + "', '" + furnizimID + "' )";
-                        command.ExecuteNonQuery();
-                    }
+                    
 
                     sqlTran.Commit();
 
@@ -965,6 +960,51 @@ namespace BarProject
             }
 
         }
+
+
+        public bool shtoProdukteFurnizim(int furnizimID, ArrayList produktet)
+        {
+            //int furnizimID = returnFurnizimID();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+                    foreach (DataModel model in produktet)
+                    {
+                        command.CommandText =
+                            "Insert into ProduktFurnizim (EmerProdukt, SasiProdukt, CmimProdukt, Total, FurnizimID) values (' " + model.Emri + " ' , '" + model.Sasia + "', '" + model.Cmimi + "', '" + model.Total + "', '" + furnizimID + "' )";
+                        command.ExecuteNonQuery();
+                    }
+
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+                }
+                catch (Exception e)
+                {
+
+                    MessageBox.Show(e.Message);
+                    connection.Close();
+                    return false;
+                }
+
+
+            }
+
+        }
+
 
 
 
@@ -1771,7 +1811,37 @@ namespace BarProject
             }
         }
 
+        public int getLatestFurnizimID()
+        {
+            int furnizimID = 1;
+            try
+            {
 
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT MAX(ID) FROM Furnizim;", connection);
+                    connection.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            furnizimID = reader.GetInt32(0);
+                        }
+                    }
+                    reader.Close();
+
+
+                    return furnizimID;
+                }
+            }
+            catch (Exception)
+            {
+                return furnizimID;
+            }
+        }
 
 
 
