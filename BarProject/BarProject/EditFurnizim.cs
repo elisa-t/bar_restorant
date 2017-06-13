@@ -38,10 +38,12 @@ namespace BarProject
 
             FurnitorComboBox.SelectedText = furnitori;
 
+
             foreach(DataModel produkt in produktetFurnizim)
             {
                 furnizimDataGrid.Rows.Add(produkt.ID, produkt.Emri, produkt.Sasia, produkt.Cmimi, produkt.Total);
             }
+
 
             faturaBox.Text = furnizim.fatura;
 
@@ -74,7 +76,7 @@ namespace BarProject
             else
             {
                 decimal totali = Convert.ToInt32(sasiaBox.Text) * Convert.ToDecimal(cmimiBox.Text);
-                furnizimDataGrid.Rows.Add(emriBox.Text, sasiaBox.Text, cmimiBox.Text, totali);
+                furnizimDataGrid.Rows.Add(0,emriBox.Text, sasiaBox.Text, cmimiBox.Text, totali);
 
                 totalFurnizim += totali;
 
@@ -120,6 +122,7 @@ namespace BarProject
         private void ruajButton_Click(object sender, EventArgs e)
         {
             ArrayList produktFurnizim = new ArrayList();
+            ArrayList produktFurnizimToAdd = new ArrayList();
 
             DataController dc = new DataController();
 
@@ -135,7 +138,10 @@ namespace BarProject
                     produkt.Cmimi = Convert.ToDecimal(row.Cells["CmimProdukt"].Value);
                     produkt.Total = Convert.ToDecimal(row.Cells["TotalProdukt"].Value);
 
-                    produktFurnizim.Add(produkt);
+                    if (produkt.ID > 0)
+                        produktFurnizim.Add(produkt);
+                    else
+                        produktFurnizimToAdd.Add(produkt);
                 }
                 catch
                 {
@@ -150,14 +156,26 @@ namespace BarProject
 
                 furnizim.furnitorID = dc.getFurnitorID(selectedFurnitorName);
 
-                if(dc.editFurnizim(furnizim, produktFurnizim))
+                if(dc.editFurnizim(furnizim))
                 {
-                    if (MessageBox.Show("Furnizimi u modifikua") == DialogResult.OK)
+
+                    if(dc.editProduktFurnizim( produktFurnizim))
                     {
-                        this.Close();
-                        Furnizim furnizimForm = new Furnizim();
-                        furnizimForm.Show();
+                       if (produktFurnizimToAdd.Count > 0)
+                       {
+                           if(dc.shtoProdukteFurnizim(furnizim.ID, produktFurnizimToAdd))
+                           {
+                               if (MessageBox.Show("Furnizimi u modifikua") == DialogResult.OK)
+                               {
+                                   this.Close();
+                                   Furnizim furnizimForm = new Furnizim();
+                                   furnizimForm.Show();
+                               }
+                           }
+                       }
+                        
                     }
+                    
                 }
                 else
                 {
