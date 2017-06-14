@@ -26,22 +26,6 @@ namespace BarProject
             KategoriaComboBox.SelectedIndex = 0;
         }
 
-        private void ZgjidhFotoButton_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-
-            ofd.Title = "Zgjidh Foto...";
-            ofd.DefaultExt = ".jpg";
-            ofd.Filter = "Media Files|*.jpg;*.png;*.gif;*.bmp;*.jpeg|All Files|*.*";
-
-            DialogResult result = ofd.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                ZgjidhFotoBox.Load(ofd.FileName);
-            }
-        }
-       
         private void ShtoProduktButton_Click(object sender, EventArgs e)
         {
             DataController dc = new DataController();
@@ -49,9 +33,8 @@ namespace BarProject
             decimal cmimi = Convert.ToDecimal(CmimiProduktBox.Text);
             int kategoria = dc.getKategori(KategoriaComboBox.SelectedItem.ToString());
             string pershkrimi = ProductDescriptionRBox.Text;
-            PictureBox foto = ZgjidhFotoBox;
-
-            if(dc.ShtoProdukt(emri, cmimi, kategoria, pershkrimi, foto))
+        
+            if(dc.ShtoProdukt(emri, cmimi, kategoria, pershkrimi))
             {
                 if (MessageBox.Show("Produkti u shtua") == DialogResult.OK)
                 {

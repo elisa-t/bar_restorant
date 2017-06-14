@@ -23,17 +23,6 @@ namespace BarProject
             this.CmimiBox.Text = Convert.ToString(produktModel.Cmimi);
             this.KategoriaBox.Text = kategoria;
             this.PershkrimiBox.Text = produktModel.Pershkrimi;
-
-            //konvertimi nga byte qe eshte ne databaze ne image per picture box
-            MemoryStream mStream = new MemoryStream();
-            byte[] pData = produktModel.Foto;
-            mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
-            Bitmap bm = new Bitmap(mStream, false);
-            mStream.Dispose();
-
-            this.FotoBox.Image = bm;
-
-
         }
 
         DataModel produktModel = new DataModel();
@@ -43,5 +32,6 @@ namespace BarProject
         {
             this.Close();
         }
+
     }
 }

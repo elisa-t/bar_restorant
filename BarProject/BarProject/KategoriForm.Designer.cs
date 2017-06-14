@@ -32,7 +32,6 @@
             this.KategoriListDataGridView = new System.Windows.Forms.DataGridView();
             this.KategoriID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KategoriEmer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KategoriFoto = new System.Windows.Forms.DataGridViewImageColumn();
             this.ViewKategori = new System.Windows.Forms.DataGridViewButtonColumn();
             this.EditKategori = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DeleteKategori = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -51,18 +50,18 @@
             // 
             // KategoriListDataGridView
             // 
+            this.KategoriListDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.KategoriListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.KategoriListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.KategoriID,
             this.KategoriEmer,
-            this.KategoriFoto,
             this.ViewKategori,
             this.EditKategori,
             this.DeleteKategori});
             this.KategoriListDataGridView.Location = new System.Drawing.Point(13, 94);
             this.KategoriListDataGridView.Name = "KategoriListDataGridView";
             this.KategoriListDataGridView.RowTemplate.Height = 30;
-            this.KategoriListDataGridView.Size = new System.Drawing.Size(650, 202);
+            this.KategoriListDataGridView.Size = new System.Drawing.Size(569, 202);
             this.KategoriListDataGridView.TabIndex = 1;
             this.KategoriListDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.KategoriListDataGridView_CellContentClick);
             // 
@@ -77,12 +76,6 @@
             this.KategoriEmer.HeaderText = "Emri";
             this.KategoriEmer.Name = "KategoriEmer";
             this.KategoriEmer.ReadOnly = true;
-            // 
-            // KategoriFoto
-            // 
-            this.KategoriFoto.HeaderText = "Foto";
-            this.KategoriFoto.Name = "KategoriFoto";
-            this.KategoriFoto.ReadOnly = true;
             // 
             // ViewKategori
             // 
@@ -103,7 +96,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(675, 328);
+            this.ClientSize = new System.Drawing.Size(609, 328);
             this.Controls.Add(this.KategoriListDataGridView);
             this.Controls.Add(this.ShtoKategoriButton);
             this.Name = "KategoriForm";
@@ -120,7 +113,6 @@
         private System.Windows.Forms.DataGridView KategoriListDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn KategoriID;
         private System.Windows.Forms.DataGridViewTextBoxColumn KategoriEmer;
-        private System.Windows.Forms.DataGridViewImageColumn KategoriFoto;
         private System.Windows.Forms.DataGridViewButtonColumn ViewKategori;
         private System.Windows.Forms.DataGridViewButtonColumn EditKategori;
         private System.Windows.Forms.DataGridViewButtonColumn DeleteKategori;

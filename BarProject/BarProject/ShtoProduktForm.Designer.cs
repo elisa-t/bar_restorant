@@ -36,11 +36,7 @@
             this.KategoriaComboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.ProductDescriptionRBox = new System.Windows.Forms.RichTextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.ZgjidhFotoBox = new System.Windows.Forms.PictureBox();
-            this.ZgjidhFotoButton = new System.Windows.Forms.Button();
             this.ShtoProduktButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.ZgjidhFotoBox)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -113,41 +109,11 @@
             this.ProductDescriptionRBox.TabIndex = 18;
             this.ProductDescriptionRBox.Text = "";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(27, 271);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(31, 15);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "Foto";
-            // 
-            // ZgjidhFotoBox
-            // 
-            this.ZgjidhFotoBox.Location = new System.Drawing.Point(117, 262);
-            this.ZgjidhFotoBox.Name = "ZgjidhFotoBox";
-            this.ZgjidhFotoBox.Size = new System.Drawing.Size(146, 102);
-            this.ZgjidhFotoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ZgjidhFotoBox.TabIndex = 20;
-            this.ZgjidhFotoBox.TabStop = false;
-            // 
-            // ZgjidhFotoButton
-            // 
-            this.ZgjidhFotoButton.Location = new System.Drawing.Point(12, 312);
-            this.ZgjidhFotoButton.Name = "ZgjidhFotoButton";
-            this.ZgjidhFotoButton.Size = new System.Drawing.Size(85, 23);
-            this.ZgjidhFotoButton.TabIndex = 21;
-            this.ZgjidhFotoButton.Text = "Zgjidh Foto";
-            this.ZgjidhFotoButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ZgjidhFotoButton.UseVisualStyleBackColor = true;
-            this.ZgjidhFotoButton.Click += new System.EventHandler(this.ZgjidhFotoButton_Click);
-            // 
             // ShtoProduktButton
             // 
-            this.ShtoProduktButton.Location = new System.Drawing.Point(61, 391);
+            this.ShtoProduktButton.Location = new System.Drawing.Point(55, 273);
             this.ShtoProduktButton.Name = "ShtoProduktButton";
-            this.ShtoProduktButton.Size = new System.Drawing.Size(146, 40);
+            this.ShtoProduktButton.Size = new System.Drawing.Size(146, 47);
             this.ShtoProduktButton.TabIndex = 22;
             this.ShtoProduktButton.Text = "Shto Produkt";
             this.ShtoProduktButton.UseVisualStyleBackColor = true;
@@ -157,11 +123,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 452);
+            this.ClientSize = new System.Drawing.Size(291, 353);
             this.Controls.Add(this.ShtoProduktButton);
-            this.Controls.Add(this.ZgjidhFotoButton);
-            this.Controls.Add(this.ZgjidhFotoBox);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.ProductDescriptionRBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.KategoriaComboBox);
@@ -174,7 +137,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ShtoProduktForm";
             this.Load += new System.EventHandler(this.ShtoProduktForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ZgjidhFotoBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,9 +152,6 @@
         private System.Windows.Forms.ComboBox KategoriaComboBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox ProductDescriptionRBox;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox ZgjidhFotoBox;
-        private System.Windows.Forms.Button ZgjidhFotoButton;
         private System.Windows.Forms.Button ShtoProduktButton;
     }
 }

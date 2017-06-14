@@ -22,55 +22,16 @@ namespace BarProject
             this.EmriBox.Text = editModel.Emri;
             this.PershkrimBox.Text = editModel.Pershkrimi;
 
-            //konvertimi nga byte qe eshte ne databaze ne image per picture box
-            MemoryStream mStream = new MemoryStream();
-            byte[] pData = editModel.Foto;
-            mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
-            Bitmap bm = new Bitmap(mStream, false);
-            mStream.Dispose();
-
-            this.FotoBox.Image = bm;
 
         }
 
         DataModel editModel = new DataModel();
-
-        private void ZgjidhFotoButton_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-
-            ofd.Title = "Zgjidh Foto...";
-            ofd.DefaultExt = ".jpg";
-            ofd.Filter = "Media Files|*.jpg;*.png;*.gif;*.bmp;*.jpeg|All Files|*.*";
-
-            DialogResult result = ofd.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                FotoBox.Load(ofd.FileName);
-            }
-        }
-
         private void EditKategoriButton_Click(object sender, EventArgs e)
         {
             DataController dataController = new DataController();
 
             editModel.Emri = this.EmriBox.Text;
             editModel.Pershkrimi = this.PershkrimBox.Text;
-
-            /*initializing memory stream class for creating a stream of binary numbers*/
-            MemoryStream ms = new MemoryStream();
-
-            /*saving the image in raw format from picture box*/
-            FotoBox.Image.Save(ms, FotoBox.Image.RawFormat);
-
-            /*Array of Binary numbers that have been converted*/
-            byte[] foto = ms.GetBuffer();
-
-            /*closing the memory stream*/
-            ms.Close();
-
-            editModel.Foto = foto;
 
             if(dataController.editKategori(editModel))
             {
@@ -92,8 +53,6 @@ namespace BarProject
             }
 
         }
-
-
 
 
     }

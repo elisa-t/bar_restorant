@@ -36,7 +36,6 @@
             this.EmriColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CmimiColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KategoriaColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FotoColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.ViewColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.EditColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DeleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -80,13 +79,12 @@
             this.EmriColumn,
             this.CmimiColumn,
             this.KategoriaColumn,
-            this.FotoColumn,
             this.ViewColumn,
             this.EditColumn,
             this.DeleteColumn});
             this.ProduktDataGrid.Location = new System.Drawing.Point(28, 94);
             this.ProduktDataGrid.Name = "ProduktDataGrid";
-            this.ProduktDataGrid.Size = new System.Drawing.Size(607, 252);
+            this.ProduktDataGrid.Size = new System.Drawing.Size(595, 252);
             this.ProduktDataGrid.TabIndex = 3;
             this.ProduktDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProduktDataGrid_CellContentClick);
             // 
@@ -114,12 +112,6 @@
             this.KategoriaColumn.Name = "KategoriaColumn";
             this.KategoriaColumn.ReadOnly = true;
             // 
-            // FotoColumn
-            // 
-            this.FotoColumn.HeaderText = "Foto";
-            this.FotoColumn.Name = "FotoColumn";
-            this.FotoColumn.ReadOnly = true;
-            // 
             // ViewColumn
             // 
             this.ViewColumn.HeaderText = "View";
@@ -139,7 +131,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 428);
+            this.ClientSize = new System.Drawing.Size(660, 397);
             this.Controls.Add(this.ProduktDataGrid);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.KategoriComboBox);
@@ -163,7 +155,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn EmriColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CmimiColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn KategoriaColumn;
-        private System.Windows.Forms.DataGridViewImageColumn FotoColumn;
         private System.Windows.Forms.DataGridViewButtonColumn ViewColumn;
         private System.Windows.Forms.DataGridViewButtonColumn EditColumn;
         private System.Windows.Forms.DataGridViewButtonColumn DeleteColumn;

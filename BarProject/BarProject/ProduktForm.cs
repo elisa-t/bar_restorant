@@ -38,7 +38,7 @@ namespace BarProject
             { 
                 foreach(DataModel produkt in dc.ngarkoTeGjitheProduktet())
                 {
-                    ProduktDataGrid.Rows.Add(produkt.ID, produkt.Emri, produkt.Cmimi, produkt.Kategoria, produkt.Foto);
+                    ProduktDataGrid.Rows.Add(produkt.ID, produkt.Emri, produkt.Cmimi, produkt.Kategoria);
                 }
             }
             else if (KategoriComboBox.SelectedIndex > 0)
@@ -49,7 +49,7 @@ namespace BarProject
 
                 foreach (DataModel produkt in dc.ngarkoProduktetNgaKategoria(kategoriID))
                 {
-                    ProduktDataGrid.Rows.Add(produkt.ID, produkt.Emri, produkt.Cmimi, produkt.Kategoria, produkt.Foto);
+                    ProduktDataGrid.Rows.Add(produkt.ID, produkt.Emri, produkt.Cmimi, produkt.Kategoria);
                 }
             }
         }

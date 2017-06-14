@@ -108,7 +108,7 @@ namespace BarProject
         }
 
 
-        public bool shtoKategori(string emerKategori, string pershkrimKategori, PictureBox fotoKategori)
+        public bool shtoKategori(string emerKategori, string pershkrimKategori)
         {
 
 
@@ -116,34 +116,16 @@ namespace BarProject
             {
                 connection.Open();
 
-                /*Start a local transaction*/
                 SqlTransaction sqlTran = connection.BeginTransaction();
-
-                /*Enlist a command in the current transaction*/
                 SqlCommand command = connection.CreateCommand();
                 command.Transaction = sqlTran;
-
-                /*initializing memory stream class for creating a stream of binary numbers*/
-                MemoryStream ms = new MemoryStream();
-
-                /*saving the image in raw format from picture box*/
-                fotoKategori.Image.Save(ms, fotoKategori.Image.RawFormat);
-
-                 /*Array of Binary numbers that have been converted*/
-                byte[] foto = ms.GetBuffer();
-
-                /*closing the memory stream*/
-                ms.Close();
-
 
                 try
                 {
                     command.Parameters.AddWithValue("@emri", emerKategori);
                     command.Parameters.AddWithValue("@pershkrimi", pershkrimKategori);
-                    command.Parameters.AddWithValue("@foto", foto);
-
                     command.CommandText = 
-                        "Insert into Kategoria (EmriKategori, PershkrimKategori, FotoKategori) values (@emri, @pershkrimi, @foto)";
+                        "Insert into Kategoria (EmriKategori, PershkrimKategori) values (@emri, @pershkrimi)";
 
                     command.ExecuteNonQuery();
 
@@ -228,7 +210,7 @@ namespace BarProject
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand command = new SqlCommand("SELECT ID , EmriKategori, PershkrimKategori, FotoKategori from Kategoria where ID ='" + kategori +"'", connection);
+                SqlCommand command = new SqlCommand("SELECT ID , EmriKategori, PershkrimKategori from Kategoria where ID ='" + kategori +"'", connection);
 
                 connection.Open();
 
@@ -241,7 +223,6 @@ namespace BarProject
                         model.ID = reader.GetInt32(0);
                         model.Emri = reader.GetString(1);
                         model.Pershkrimi = reader.GetString(2);
-                        model.Foto = (byte[])reader[3];
                     }
                 }
                 reader.Close();
@@ -319,10 +300,8 @@ namespace BarProject
                     command.Parameters.AddWithValue("@KategoriID", kategoriModel.ID);
                     command.Parameters.AddWithValue("@Emri", kategoriModel.Emri);
                     command.Parameters.AddWithValue("@Pershkrimi", kategoriModel.Pershkrimi);
-                    command.Parameters.AddWithValue("@Foto", kategoriModel.Foto);
-
                     command.CommandText =
-                        "Update Kategoria set EmriKategori = @Emri, PershkrimKategori = @Pershkrimi, FotoKategori = @Foto where ID = @KategoriID";
+                        "Update Kategoria set EmriKategori = @Emri, PershkrimKategori = @Pershkrimi where ID = @KategoriID";
 
                     command.ExecuteNonQuery();
 
@@ -686,7 +665,7 @@ namespace BarProject
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand command = new SqlCommand("SELECT ID, EmerProdukt, CmimProdukt, ProduktKategoriID, FotoProdukt FROM Produktet", connection);
+                SqlCommand command = new SqlCommand("SELECT ID, EmerProdukt, CmimProdukt, ProduktKategoriID FROM Produktet", connection);
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -700,12 +679,7 @@ namespace BarProject
                         produkt.Emri = reader.GetString(1);
                         produkt.Cmimi = reader.GetDecimal(2);
                         int  idkategori = reader.GetInt32(3);
-                        produkt.Kategoria = getKategoriEmer(idkategori);
-                        if (!(reader[4] == null))
-                        {
-                            produkt.Foto = (byte[])reader[4];
-                        }
-                         
+                        produkt.Kategoria = getKategoriEmer(idkategori); 
                         produktet.Add(produkt);
 
                     }
@@ -721,7 +695,7 @@ namespace BarProject
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand command = new SqlCommand("SELECT ID, EmerProdukt, CmimProdukt, ProduktKategoriID, FotoProdukt FROM Produktet Where ProduktKategoriID = '" + kategoriaID + "'", connection);
+                SqlCommand command = new SqlCommand("SELECT ID, EmerProdukt, CmimProdukt, ProduktKategoriID FROM Produktet Where ProduktKategoriID = '" + kategoriaID + "'", connection);
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -736,11 +710,7 @@ namespace BarProject
                         produkt.Cmimi = reader.GetDecimal(2);
                         int idkategori = reader.GetInt32(3);
                         produkt.Kategoria = getKategoriEmer(idkategori);
-                        if (!(reader[4] == null))
-                        {
-                            produkt.Foto = (byte[])reader[4];
-                        }
-
+                       
                         produktet.Add(produkt);
 
                     }
@@ -750,7 +720,7 @@ namespace BarProject
             return produktet;
         }
 
-        public bool ShtoProdukt(string emerProdukt, decimal cmimiProdukt, int kategoriaId, string pershkrimProdukt, PictureBox fotoProdukt) 
+        public bool ShtoProdukt(string emerProdukt, decimal cmimiProdukt, int kategoriaId, string pershkrimProdukt) 
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
@@ -759,20 +729,13 @@ namespace BarProject
                 SqlCommand command = connection.CreateCommand();
                 command.Transaction = sqlTran;
 
-                MemoryStream ms = new MemoryStream();
-                fotoProdukt.Image.Save(ms, fotoProdukt.Image.RawFormat);
-                byte[] foto = ms.GetBuffer();
-                ms.Close();
-
                 try
                 {
                     command.Parameters.AddWithValue("@emri", emerProdukt);
                     command.Parameters.AddWithValue("@cmimi", cmimiProdukt);
                     command.Parameters.AddWithValue("@pershkrimi", pershkrimProdukt);
                     command.Parameters.AddWithValue("@id", kategoriaId);
-                    command.Parameters.AddWithValue("@foto", foto);
-
-                    command.CommandText = "Insert into Produktet (EmerProdukt, CmimProdukt, ProduktKategoriID, PershkrimProdukt, FotoProdukt) values (@emri, @cmimi,  @id, @pershkrimi, @foto)";
+                    command.CommandText = "Insert into Produktet (EmerProdukt, CmimProdukt, ProduktKategoriID, PershkrimProdukt) values (@emri, @cmimi,  @id, @pershkrimi)";
 
                     command.ExecuteNonQuery();
                     sqlTran.Commit();
@@ -796,7 +759,7 @@ namespace BarProject
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand command = new SqlCommand("SELECT ID , EmerProdukt, CmimProdukt, PershkrimProdukt, FotoProdukt from Produktet where ID ='" + produktID + "'", connection);
+                SqlCommand command = new SqlCommand("SELECT ID , EmerProdukt, CmimProdukt, PershkrimProdukt from Produktet where ID ='" + produktID + "'", connection);
 
                 connection.Open();
 
@@ -810,7 +773,6 @@ namespace BarProject
                         model.Emri = reader.GetString(1);
                         model.Cmimi = reader.GetDecimal(2);
                         model.Pershkrimi = reader.GetString(3);
-                        model.Foto = (byte[])reader[4];
                     }
                 }
                 reader.Close();
@@ -870,7 +832,7 @@ namespace BarProject
         }
 
 
-        public bool editProdukt(int id ,string emri,decimal cmimi,int kategoria,string pershkrimi, byte[] foto)
+        public bool editProdukt(int id ,string emri,decimal cmimi,int kategoria,string pershkrimi)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
@@ -888,10 +850,8 @@ namespace BarProject
                     command.Parameters.AddWithValue("@CmimProdukt", cmimi);
                     command.Parameters.AddWithValue("@ProduktKategoriID", kategoria);
                     command.Parameters.AddWithValue("@PershkrimProdukt", pershkrimi);
-                    command.Parameters.AddWithValue("@FotoProdukt", foto);
-
                     command.CommandText =
-                        "Update Produktet set EmerProdukt = @EmerProdukt, CmimProdukt = @CmimProdukt, ProduktKategoriID = @ProduktKategoriID, PershkrimProdukt = @PershkrimProdukt, FotoProdukt = @FotoProdukt where ID = @ID";
+                        "Update Produktet set EmerProdukt = @EmerProdukt, CmimProdukt = @CmimProdukt, ProduktKategoriID = @ProduktKategoriID, PershkrimProdukt = @PershkrimProdukt where ID = @ID";
 
                     command.ExecuteNonQuery();
 

@@ -25,17 +25,6 @@ namespace BarProject
             this.CmimiProduktBox.Text = Convert.ToString(produktModel.Cmimi);
             
             this.ProductDescriptionRBox.Text = produktModel.Pershkrimi;
-
-            //konvertimi nga byte qe eshte ne databaze ne image per picture box
-            MemoryStream mStream = new MemoryStream();
-            byte[] pData = produktModel.Foto;
-            mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
-            Bitmap bm = new Bitmap(mStream, false);
-            mStream.Dispose();
-
-            this.ZgjidhFotoBox.Image = bm;
-
-
         }
 
         DataModel produktModel = new DataModel();
@@ -52,22 +41,6 @@ namespace BarProject
             this.KategoriaComboBox.SelectedText = kategoria;
         }
 
-        private void ZgjidhFotoButton_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-
-            ofd.Title = "Zgjidh Foto...";
-            ofd.DefaultExt = ".jpg";
-            ofd.Filter = "Media Files|*.jpg;*.png;*.gif;*.bmp;*.jpeg|All Files|*.*";
-
-            DialogResult result = ofd.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                ZgjidhFotoBox.Load(ofd.FileName);
-            }
-        }
-
         private void EditProduktButton_Click(object sender, EventArgs e)
         {
             DataController dataController = new DataController();
@@ -77,21 +50,7 @@ namespace BarProject
             decimal cmimi = Convert.ToDecimal(this.CmimiProduktBox.Text);
             int kategoria = dataController.getKategori(KategoriaComboBox.SelectedItem.ToString());
 
-            /*initializing memory stream class for creating a stream of binary numbers*/
-            MemoryStream ms = new MemoryStream();
-
-            /*saving the image in raw format from picture box*/
-            ZgjidhFotoBox.Image.Save(ms, ZgjidhFotoBox.Image.RawFormat);
-
-            /*Array of Binary numbers that have been converted*/
-            byte[] foto = ms.GetBuffer();
-
-            /*closing the memory stream*/
-            ms.Close();
-
-            produktModel.Foto = foto;
-
-            if (dataController.editProdukt(produktModel.ID, emri, cmimi, kategoria, pershkrimi, foto))
+            if (dataController.editProdukt(produktModel.ID, emri, cmimi, kategoria, pershkrimi))
             {
                 if (MessageBox.Show("Produkti u modifikua me sukses") == DialogResult.OK)
                 {

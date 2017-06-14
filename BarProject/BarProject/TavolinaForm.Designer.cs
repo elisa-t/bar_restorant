@@ -97,7 +97,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 326);
+            this.ClientSize = new System.Drawing.Size(605, 351);
             this.Controls.Add(this.TavolineGridView);
             this.Controls.Add(this.ShtoTavolinaButton);
             this.Name = "TavolinaForm";

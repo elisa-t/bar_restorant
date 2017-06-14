@@ -69,12 +69,7 @@ namespace BarProject
                 Button btn = new Button();
                 btn.Text = kategori.Emri;
                 btn.Size = new System.Drawing.Size(80, 80);
-                btn.ForeColor = Color.White;
-
-                MemoryStream ms = new MemoryStream(kategori.Foto);
-                btn.Image = Image.FromStream(ms);
-                btn.Image = new Bitmap(btn.Image, btn.Size);
-
+                btn.BackColor = Color.Beige;
                 btn.Tag = kategori.ID;
 
                 kategoritePanel.Controls.Add(btn);
@@ -102,12 +97,7 @@ namespace BarProject
                 Button produktButton = new Button();
                 produktButton.Text = produkt.Emri;
                 produktButton.Size = new System.Drawing.Size(80, 80);
-                produktButton.ForeColor = Color.White;
-
-                MemoryStream ms = new MemoryStream(produkt.Foto);
-                produktButton.Image = Image.FromStream(ms);
-                produktButton.Image = new Bitmap(produktButton.Image, produktButton.Size);
-
+                produktButton.BackColor = Color.Beige;
                 produktButton.Tag = produkt.ID;
 
                 produktetPanel.Controls.Add(produktButton);

@@ -22,15 +22,6 @@ namespace BarProject
             this.EmriBox.Text = kategoriModel.Emri;
             this.PershkrimiBox.Text = kategoriModel.Pershkrimi;
 
-            //konvertimi nga byte qe eshte ne databaze ne image per picture box
-            MemoryStream mStream = new MemoryStream();
-            byte[] pData = kategoriModel.Foto;
-            mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
-            Bitmap bm = new Bitmap(mStream, false);
-            mStream.Dispose();
-
-            this.FotoBox.Image = bm;
-
         }
 
         DataModel kategoriModel = new DataModel();

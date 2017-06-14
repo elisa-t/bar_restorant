@@ -20,7 +20,7 @@ namespace BarProject
 
             foreach (DataModel kategori in dataController.ngarkoKategorite())
             {
-                KategoriListDataGridView.Rows.Add(kategori.ID, kategori.Emri, kategori.Foto);
+                KategoriListDataGridView.Rows.Add(kategori.ID, kategori.Emri);
             }
         }
 
