@@ -405,7 +405,7 @@ namespace BarProject
             ArrayList TavolinaList = new ArrayList();
             using (SqlConnection connection = new SqlConnection(ConnectionString)) 
             {
-                SqlCommand command = new SqlCommand("SELECT ID, EmerTavoline, Zene FROM Tavoline" ,connection);
+                SqlCommand command = new SqlCommand("SELECT ID, EmerTavoline, Zene FROM Tavoline ",connection);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -490,7 +490,7 @@ namespace BarProject
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand command = new SqlCommand("SELECT ID , EmerTavoline, Zene from Tavoline where ID ='" + idTavoline + "'", connection);
+                SqlCommand command = new SqlCommand("SELECT ID , EmerTavoline, Zene, kamarier_id from Tavoline where ID ='" + idTavoline + "'", connection);
 
                 connection.Open();
 
@@ -503,6 +503,7 @@ namespace BarProject
                         tavolineModel.ID = reader.GetInt32(0);
                         tavolineModel.Emri = reader.GetString(1);
                         tavolineModel.tavolineZene = reader.GetBoolean(2);
+                        tavolineModel.KamarierID = reader.GetInt32(3);
                        
                     }
                 }
@@ -1880,14 +1881,118 @@ namespace BarProject
             }
         }
 
+        public ArrayList ngarkoKamarier()
+        {
+            ArrayList KamarierList = new ArrayList();
+            string roli = "kamarier";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT Name FROM Users where Role ='" + roli + "'", connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string Emri = reader.GetString(0);
+                       KamarierList.Add(Emri);
+                    }
+                }
+                reader.Close();
+            }
+            return KamarierList;
+        }
+
+        public bool UpdateTavoline(DataModel tavoline)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+
+                connection.Open();
+
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+                    command.Parameters.AddWithValue("@ID", tavoline.ID);
+                    command.Parameters.AddWithValue("@kamarierID", tavoline.KamarierID);
 
 
+                    command.CommandText =
+                        "UPDATE Tavoline SET  kamarier_id = @kamarierID  WHERE ID = @ID";
+                    command.ExecuteNonQuery();
 
 
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
 
 
+                }
+                catch
+                {
+                    connection.Close();
+                    return false;
+                }
 
+            }
+        }
 
+        public int getKamarierID(string emer)
+        {
+            int Id = 0;
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT ID  from Users where Name ='" + emer + "'", connection);
+
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Id = reader.GetInt32(0);
+                        
+
+                    }
+                }
+                reader.Close();
+            }
+            return Id;
+        }
+
+        public ArrayList ngarkoTavolinaSipasID(int Id)
+        {
+            ArrayList TavolinaList = new ArrayList();
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT ID, EmerTavoline, Zene FROM Tavoline where kamarier_id ='" + Id + "'", connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        DataModel model = new DataModel();
+                        model.ID = reader.GetInt32(0);
+                        model.Emri = reader.GetString(1);
+                        model.tavolineZene = reader.GetBoolean(2);
+                        TavolinaList.Add(model);
+                    }
+                }
+                reader.Close();
+            }
+            return TavolinaList;
+        }
 
     }
 }

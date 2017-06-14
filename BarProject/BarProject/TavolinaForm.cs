@@ -69,6 +69,18 @@ namespace BarProject
                     this.Close();
                     editTavoline.Show();
                 }
+
+                else if (TavolineGridView.Columns[e.ColumnIndex].Name == "ShtoKamarier") 
+                {
+                    DataModel TavolineModel = new DataModel();
+                    int Id = Convert.ToInt32(TavolineGridView.Rows[e.RowIndex].Cells["idTavoline"].Value);
+                    DataController dataController = new DataController();
+
+                    TavolineModel = dataController.getTavoline(Id);
+                    ShtoKamarierForn shto = new ShtoKamarierForn(TavolineModel);
+                    this.Close();
+                   shto.Show();
+                }
             }
             
         }

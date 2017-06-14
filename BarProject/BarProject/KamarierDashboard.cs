@@ -31,8 +31,9 @@ namespace BarProject
         {
 
             this.CredentialLabel.Text = user.Emri + "(kamarier)";
+            int id = dc.getKamarierID(user.Emri);
 
-            ArrayList tavolinat = dc.ngarkoTavolina();
+            ArrayList tavolinat = dc.ngarkoTavolinaSipasID(id);
 
             //sigurohemi qe nuk eshte e selektuar asnje tavoline gjate ekzekutimit 
             //ne menyre qe te mos kemi konflikte
@@ -321,7 +322,7 @@ namespace BarProject
 
                     tavolinatPanel.Controls.Clear();
 
-                    foreach (DataModel tavoline in dc.ngarkoTavolina())
+                    foreach (DataModel tavoline in dc.ngarkoTavolinaSipasID(user.ID))
                     {
                         Button btn = new Button();
                         btn.Text = tavoline.Emri;

@@ -145,6 +145,12 @@
     <Compile Include="ShtoFurnizim.Designer.cs">
       <DependentUpon>ShtoFurnizim.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShtoKamarierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShtoKamarierForm.Designer.cs">
+      <DependentUpon>ShtoKamarierForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShtoKategoriForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ShtoFurnizim.resx">
       <DependentUpon>ShtoFurnizim.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShtoKamarierForm.resx">
+      <DependentUpon>ShtoKamarierForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ShtoKategoriForm.resx">
       <DependentUpon>ShtoKategoriForm.cs</DependentUpon>

@@ -49,6 +49,7 @@
             // 
             // FurnitorGridView
             // 
+            this.FurnitorGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.FurnitorGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FurnitorGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idFurnitor,
