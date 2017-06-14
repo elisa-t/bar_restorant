@@ -68,5 +68,11 @@ namespace BarProject
            form.Show();
 
        }
+
+       private void ShitjeButton_Click(object sender, EventArgs e)
+       {
+           ShitjeForm shitjeForm = new ShitjeForm();
+           shitjeForm.Show();
+       }
     }
 }

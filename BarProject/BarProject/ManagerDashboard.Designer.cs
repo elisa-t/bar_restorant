@@ -46,6 +46,7 @@
             this.ShitjeButton.TabIndex = 11;
             this.ShitjeButton.Text = "SHITJE";
             this.ShitjeButton.UseVisualStyleBackColor = true;
+            this.ShitjeButton.Click += new System.EventHandler(this.ShitjeButton_Click);
             // 
             // FurnizimButton
             // 
