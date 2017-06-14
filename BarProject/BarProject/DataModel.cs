@@ -31,7 +31,9 @@ namespace BarProject
 
         public bool tavolineZene;
 
-
+        public string emerProdukt;
+        public string emerKamarier;
+        public string emerTavoline;
 
 
     }

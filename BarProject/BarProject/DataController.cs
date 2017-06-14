@@ -1954,5 +1954,280 @@ namespace BarProject
             return TavolinaList;
         }
 
+
+        public ArrayList ngarkoKamarierList()
+        {
+            ArrayList kamarierList = new ArrayList();
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                string kamarier = "kamarier";
+
+                SqlCommand command = new SqlCommand("SELECT ID, Name FROM Users WHERE Role = '" + kamarier + "' ", connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        DataModel model = new DataModel();
+                        model.ID = reader.GetInt32(0);
+                        model.Emri = reader.GetString(1);
+                        kamarierList.Add(model);
+                    }
+                }
+                reader.Close();
+            }
+            return kamarierList;
+        }
+
+
+        public int getTavolineID(string tavolineName)
+        {
+            int tavolineID = 0;
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT ID  from Tavoline where EmerTavoline ='" + tavolineName + "'", connection);
+
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        tavolineID = reader.GetInt32(0);
+
+                    }
+                }
+                reader.Close();
+            }
+            return tavolineID;
+        }
+
+
+        public ArrayList ngarkoTeGjitheShitjet()
+        {
+            ArrayList shitjeList = new ArrayList();
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+
+                SqlCommand command = new SqlCommand("SELECT sh.ID, sh.DataShitje, sh.Total , u.Name, shp.EmerProdukt, t.EmerTavoline  FROM Shitje AS sh JOIN Users u ON sh.KamarierID = u.ID JOIN ShitjeProdukt shp ON sh.ID = shp.ShitjeID  JOIN Tavoline t ON sh.TavolineID = t.ID", connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        DataModel model = new DataModel();
+                        model.ID = reader.GetInt32(0);
+                        model.ShitjeData = reader.GetDateTime(1);
+                        model.Total = reader.GetDecimal(2);
+                        model.emerKamarier = reader.GetString(3);
+                        model.emerProdukt = reader.GetString(4);
+                        model.emerTavoline = reader.GetString(5);
+                        shitjeList.Add(model);
+                    }
+                }
+                reader.Close();
+            }
+            return shitjeList;
+        }
+
+        public ArrayList ngarkoTeGjitheShitjet(string produktEmer, int kamarierID, int tavolineID, DateTime dataFillim, DateTime dataMbarim, bool data1, bool data2)
+        {
+            ArrayList shitjeList = new ArrayList();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+
+                    string query = "SELECT sh.ID, sh.DataShitje, sh.Total , u.Name, shp.EmerProdukt, t.EmerTavoline  FROM Shitje AS sh JOIN Users u ON sh.KamarierID = u.ID JOIN ShitjeProdukt shp ON sh.ID = shp.ShitjeID  JOIN Tavoline t ON sh.TavolineID = t.ID WHERE 1 = 1";
+
+                    if (produktEmer.Length != 0)
+                        query += " AND shp.EmerProdukt = " + produktEmer;
+
+                    if (kamarierID > 0)
+                        query += " AND u.ID = " + kamarierID;
+
+                    if (tavolineID > 0)
+                        query += " AND t.ID = " + tavolineID;
+
+                    if (dataFillim != null && dataMbarim != null && data1 && data2)
+                        query += " AND sh.DataShitje>=" + dataFillim + " AND sh.DataShitje<=" + dataMbarim;
+
+
+
+                    SqlCommand command = new SqlCommand(query, connection);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            DataModel model = new DataModel();
+                            model.ID = reader.GetInt32(0);
+                            model.ShitjeData = reader.GetDateTime(1);
+                            model.Total = reader.GetDecimal(2);
+                            model.emerKamarier = reader.GetString(3);
+                            model.emerProdukt = reader.GetString(4);
+                            model.emerTavoline = reader.GetString(5);
+                            shitjeList.Add(model);
+                        }
+                    }
+                    reader.Close();
+                }
+                return shitjeList;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return null;
+            }
+
+            
+        }
+
+
+
+        public ArrayList ngarkoShitjeNgaProdukt(string emerProdukt)
+        {
+            ArrayList shitjeList = new ArrayList();
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+
+                SqlCommand command = new SqlCommand("SELECT sh.ID, sh.DataShitje, sh.Total , u.Name, shp.EmerProdukt, t.EmerTavoline  FROM Shitje AS sh JOIN Users u ON sh.KamarierID = u.ID JOIN ShitjeProdukt shp ON sh.ID = shp.ShitjeID  JOIN Tavoline t ON sh.TavolineID = t.ID WHERE shp.EmerProdukt = '"+emerProdukt+"'", connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        DataModel model = new DataModel();
+                        model.ID = reader.GetInt32(0);
+                        model.ShitjeData = reader.GetDateTime(1);
+                        model.Total = reader.GetDecimal(2);
+                        model.emerKamarier = reader.GetString(3);
+                        model.emerProdukt = reader.GetString(4);
+                        model.emerTavoline = reader.GetString(5);
+                        shitjeList.Add(model);
+                    }
+                }
+                reader.Close();
+            }
+            return shitjeList;
+        }
+
+
+        public ArrayList ngarkoShitjeNgaKamarier(int kamarierID)
+        {
+            ArrayList shitjeList = new ArrayList();
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+
+                SqlCommand command = new SqlCommand("SELECT sh.ID, sh.DataShitje, sh.Total , u.Name, shp.EmerProdukt, t.EmerTavoline  FROM Shitje AS sh JOIN Users u ON sh.KamarierID = u.ID JOIN ShitjeProdukt shp ON sh.ID = shp.ShitjeID  JOIN Tavoline t ON sh.TavolineID = t.ID WHERE u.ID = '" + kamarierID + "'", connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        DataModel model = new DataModel();
+                        model.ID = reader.GetInt32(0);
+                        model.ShitjeData = reader.GetDateTime(1);
+                        model.Total = reader.GetDecimal(2);
+                        model.emerKamarier = reader.GetString(3);
+                        model.emerProdukt = reader.GetString(4);
+                        model.emerTavoline = reader.GetString(5);
+                        shitjeList.Add(model);
+                    }
+                }
+                reader.Close();
+            }
+            return shitjeList;
+        }
+
+
+
+        public ArrayList ngarkoShitjeNgaTavoline(int tavolineID)
+        {
+            ArrayList shitjeList = new ArrayList();
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+
+                SqlCommand command = new SqlCommand("SELECT sh.ID, sh.DataShitje, sh.Total , u.Name, shp.EmerProdukt, t.EmerTavoline  FROM Shitje AS sh JOIN Users u ON sh.KamarierID = u.ID JOIN ShitjeProdukt shp ON sh.ID = shp.ShitjeID  JOIN Tavoline t ON sh.TavolineID = t.ID WHERE t.ID = '" + tavolineID + "'", connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        DataModel model = new DataModel();
+                        model.ID = reader.GetInt32(0);
+                        model.ShitjeData = reader.GetDateTime(1);
+                        model.Total = reader.GetDecimal(2);
+                        model.emerKamarier = reader.GetString(3);
+                        model.emerProdukt = reader.GetString(4);
+                        model.emerTavoline = reader.GetString(5);
+                        shitjeList.Add(model);
+                    }
+                }
+                reader.Close();
+            }
+            return shitjeList;
+        }
+
+
+        public ArrayList ngarkoTeGjitheProduktetShitje()
+        {
+            ArrayList produktet = new ArrayList();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("SELECT DISTINCT  EmerProdukt FROM ShitjeProdukt", connection);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        DataModel produkt = new DataModel();
+                        produkt.Emri = reader.GetString(0);
+                        produktet.Add(produkt);
+
+                    }
+                }
+            }
+
+            return produktet;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

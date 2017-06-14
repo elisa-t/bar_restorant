@@ -133,6 +133,12 @@
     <Compile Include="Regjistrim.Designer.cs">
       <DependentUpon>Regjistrim.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShitjeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShitjeForm.Designer.cs">
+      <DependentUpon>ShitjeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShtoFurnitorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,6 +244,9 @@
     </Compile>
     <EmbeddedResource Include="Regjistrim.resx">
       <DependentUpon>Regjistrim.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShitjeForm.resx">
+      <DependentUpon>ShitjeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ShtoFurnitorForm.resx">
       <DependentUpon>ShtoFurnitorForm.cs</DependentUpon>
