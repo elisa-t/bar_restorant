@@ -53,5 +53,13 @@ namespace BarProject
             Application.Exit();
         }
 
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            this.Close();
+            login.Show();
+
+        }
+
     }
 }

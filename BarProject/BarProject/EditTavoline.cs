@@ -48,13 +48,6 @@ namespace BarProject
         {
             this.EditEmriBox.Text = Model.Emri;
         }
-
-        //private void EditTavoline_FormClosing(object sender, FormClosingEventArgs e)
-       // {
-          //  TavolinaForm tavolineForm = new TavolinaForm();
-            //tavolineForm.Show();
-        //}
-
        
     }
 }

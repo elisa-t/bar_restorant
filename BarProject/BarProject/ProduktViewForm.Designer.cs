@@ -119,7 +119,7 @@
             // PershkrimiBox
             // 
             this.PershkrimiBox.AutoSize = true;
-            this.PershkrimiBox.Location = new System.Drawing.Point(184, 154);
+            this.PershkrimiBox.Location = new System.Drawing.Point(160, 154);
             this.PershkrimiBox.Name = "PershkrimiBox";
             this.PershkrimiBox.Size = new System.Drawing.Size(35, 13);
             this.PershkrimiBox.TabIndex = 38;

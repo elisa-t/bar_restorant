@@ -47,6 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.totalBox = new System.Windows.Forms.TextBox();
             this.checkoutButton = new System.Windows.Forms.Button();
+            this.ShitjeButton = new System.Windows.Forms.Button();
             this.tavolinatGroupBox.SuspendLayout();
             this.kategoriGroupBox.SuspendLayout();
             this.produktetGroupBox.SuspendLayout();
@@ -129,7 +130,7 @@
             this.groupBox1.Controls.Add(this.produkteDataGrid);
             this.groupBox1.Location = new System.Drawing.Point(509, 84);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(343, 347);
+            this.groupBox1.Size = new System.Drawing.Size(380, 347);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "SHITJE";
@@ -147,7 +148,7 @@
             this.Delete});
             this.produkteDataGrid.Location = new System.Drawing.Point(7, 23);
             this.produkteDataGrid.Name = "produkteDataGrid";
-            this.produkteDataGrid.Size = new System.Drawing.Size(328, 301);
+            this.produkteDataGrid.Size = new System.Drawing.Size(367, 301);
             this.produkteDataGrid.TabIndex = 17;
             this.produkteDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.produkteDataGrid_CellContentClick);
             // 
@@ -198,14 +199,14 @@
             // 
             // totalBox
             // 
-            this.totalBox.Location = new System.Drawing.Point(531, 454);
+            this.totalBox.Location = new System.Drawing.Point(531, 461);
             this.totalBox.Name = "totalBox";
             this.totalBox.Size = new System.Drawing.Size(100, 20);
             this.totalBox.TabIndex = 18;
             // 
             // checkoutButton
             // 
-            this.checkoutButton.Location = new System.Drawing.Point(676, 438);
+            this.checkoutButton.Location = new System.Drawing.Point(659, 447);
             this.checkoutButton.Name = "checkoutButton";
             this.checkoutButton.Size = new System.Drawing.Size(110, 36);
             this.checkoutButton.TabIndex = 19;
@@ -213,11 +214,22 @@
             this.checkoutButton.UseVisualStyleBackColor = true;
             this.checkoutButton.Click += new System.EventHandler(this.checkoutButton_Click);
             // 
+            // ShitjeButton
+            // 
+            this.ShitjeButton.Location = new System.Drawing.Point(791, 445);
+            this.ShitjeButton.Name = "ShitjeButton";
+            this.ShitjeButton.Size = new System.Drawing.Size(98, 38);
+            this.ShitjeButton.TabIndex = 20;
+            this.ShitjeButton.Text = "Shitje";
+            this.ShitjeButton.UseVisualStyleBackColor = true;
+            this.ShitjeButton.Click += new System.EventHandler(this.ShitjeButton_Click);
+            // 
             // KamarierDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(864, 498);
+            this.ClientSize = new System.Drawing.Size(901, 515);
+            this.Controls.Add(this.ShitjeButton);
             this.Controls.Add(this.checkoutButton);
             this.Controls.Add(this.totalBox);
             this.Controls.Add(this.label1);
@@ -262,6 +274,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox totalBox;
         private System.Windows.Forms.Button checkoutButton;
+        private System.Windows.Forms.Button ShitjeButton;
 
     }
 }

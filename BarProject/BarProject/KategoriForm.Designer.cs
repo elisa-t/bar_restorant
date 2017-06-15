@@ -61,7 +61,7 @@
             this.KategoriListDataGridView.Location = new System.Drawing.Point(13, 94);
             this.KategoriListDataGridView.Name = "KategoriListDataGridView";
             this.KategoriListDataGridView.RowTemplate.Height = 30;
-            this.KategoriListDataGridView.Size = new System.Drawing.Size(569, 202);
+            this.KategoriListDataGridView.Size = new System.Drawing.Size(514, 202);
             this.KategoriListDataGridView.TabIndex = 1;
             this.KategoriListDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.KategoriListDataGridView_CellContentClick);
             // 
@@ -96,7 +96,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(609, 328);
+            this.ClientSize = new System.Drawing.Size(575, 349);
             this.Controls.Add(this.KategoriListDataGridView);
             this.Controls.Add(this.ShtoKategoriButton);
             this.Name = "KategoriForm";

@@ -367,6 +367,12 @@ namespace BarProject
             }
         }
 
+        private void ShitjeButton_Click(object sender, EventArgs e)
+        {
+            ShitjeKamarierForm shitje = new ShitjeKamarierForm(user);
+            shitje.Show();
+        }
+
 
 
 

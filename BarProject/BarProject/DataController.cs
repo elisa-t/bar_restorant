@@ -153,7 +153,7 @@ namespace BarProject
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand command = new SqlCommand("SELECT ID , EmriKategori, FotoKategori from Kategoria", connection);
+                SqlCommand command = new SqlCommand("SELECT ID , EmriKategori from Kategoria", connection);
 
                 connection.Open();
 
@@ -166,8 +166,6 @@ namespace BarProject
                         DataModel model = new DataModel();
                         model.ID = reader.GetInt32(0);
                         model.Emri = reader.GetString(1);
-                        model.Foto = (byte[])reader[2];
-
                         kategoriList.Add(model);
                     }
                 }
@@ -287,11 +285,7 @@ namespace BarProject
             using(SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
-
-                /*Start a local transaction*/
                 SqlTransaction sqlTran = connection.BeginTransaction();
-
-                /*Enlist a command in the current transaction*/ 
                 SqlCommand command = connection.CreateCommand();
                 command.Transaction = sqlTran;
 
@@ -1775,6 +1769,83 @@ namespace BarProject
 
         }
 
+        public bool fshiShitje(int shitjeID)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+                    command.CommandText =
+                        "DELETE FROM  Shitje WHERE ID = '" + shitjeID + "'";
+                    command.ExecuteNonQuery();
+
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+                }
+                catch (Exception e)
+                {
+
+                    MessageBox.Show(e.Message);
+                    connection.Close();
+                    return false;
+                }
+
+
+            }
+
+        }
+
+
+        public bool fshiProduktShitjeSipasShitjes(int shitjeID)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+                    command.CommandText =
+                        "DELETE FROM  ShitjeProdukt WHERE ShitjeID = '" + shitjeID + "'";
+                    command.ExecuteNonQuery();
+
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+                }
+                catch (Exception e)
+                {
+
+                    MessageBox.Show(e.Message);
+                    connection.Close();
+                    return false;
+                }
+
+
+            }
+
+        }
+
 
 
         public int getLatestProduktShitjeID()
@@ -2049,16 +2120,16 @@ namespace BarProject
                     string query = "SELECT sh.ID, sh.DataShitje, sh.Total , u.Name, shp.EmerProdukt, t.EmerTavoline  FROM Shitje AS sh JOIN Users u ON sh.KamarierID = u.ID JOIN ShitjeProdukt shp ON sh.ID = shp.ShitjeID  JOIN Tavoline t ON sh.TavolineID = t.ID WHERE 1 = 1";
 
                     if (produktEmer.Length != 0)
-                        query += " AND shp.EmerProdukt = " + produktEmer;
+                        query += " AND shp.EmerProdukt = '" + produktEmer + "'" ;
 
                     if (kamarierID > 0)
-                        query += " AND u.ID = " + kamarierID;
+                        query += " AND u.ID = '" + kamarierID + "'";
 
                     if (tavolineID > 0)
-                        query += " AND t.ID = " + tavolineID;
+                        query += " AND t.ID = '" + tavolineID + "'";
 
                     if (dataFillim != null && dataMbarim != null && data1 && data2)
-                        query += " AND sh.DataShitje>=" + dataFillim + " AND sh.DataShitje<=" + dataMbarim;
+                        query += " AND sh.DataShitje BETWEEN '" + dataFillim + "' AND '" + dataMbarim + "'";
 
 
 
@@ -2131,7 +2202,7 @@ namespace BarProject
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
 
-                SqlCommand command = new SqlCommand("SELECT sh.ID, sh.DataShitje, sh.Total , u.Name, shp.EmerProdukt, t.EmerTavoline  FROM Shitje AS sh JOIN Users u ON sh.KamarierID = u.ID JOIN ShitjeProdukt shp ON sh.ID = shp.ShitjeID  JOIN Tavoline t ON sh.TavolineID = t.ID WHERE u.ID = '" + kamarierID + "'", connection);
+                SqlCommand command = new SqlCommand("SELECT sh.ID, sh.DataShitje, sh.Total , u.Name, shp.EmerProdukt, t.EmerTavoline  FROM Shitje AS sh JOIN Users u ON sh.KamarierID = u.ID JOIN ShitjeProdukt shp ON sh.ID = shp.ShitjeID  JOIN Tavoline t ON sh.TavolineID = t.ID WHERE u.ID = '" + kamarierID + "' AND sh.shitjePerAnullim = '"+false+"'", connection);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -2154,7 +2225,34 @@ namespace BarProject
             return shitjeList;
         }
 
+        public ArrayList ngarkoShitjePerAnullim()
+        {
+            ArrayList shitjeList = new ArrayList();
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
 
+                SqlCommand command = new SqlCommand("SELECT sh.ID, sh.DataShitje, sh.Total , u.Name, shp.EmerProdukt, t.EmerTavoline  FROM Shitje AS sh JOIN Users u ON sh.KamarierID = u.ID JOIN ShitjeProdukt shp ON sh.ID = shp.ShitjeID  JOIN Tavoline t ON sh.TavolineID = t.ID WHERE  sh.shitjePerAnullim = '" + true + "'", connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        DataModel model = new DataModel();
+                        model.ID = reader.GetInt32(0);
+                        model.ShitjeData = reader.GetDateTime(1);
+                        model.Total = reader.GetDecimal(2);
+                        model.emerKamarier = reader.GetString(3);
+                        model.emerProdukt = reader.GetString(4);
+                        model.emerTavoline = reader.GetString(5);
+                        shitjeList.Add(model);
+                    }
+                }
+                reader.Close();
+            }
+            return shitjeList;
+        }
 
         public ArrayList ngarkoShitjeNgaTavoline(int tavolineID)
         {
@@ -2211,6 +2309,52 @@ namespace BarProject
 
             return produktet;
         }
+
+
+        public bool kerkoAnullimShitje(int shitjeID)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+
+                connection.Open();
+
+                SqlTransaction sqlTran = connection.BeginTransaction();
+
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = sqlTran;
+
+                try
+                {
+                    command.Parameters.AddWithValue("@ID", shitjeID);
+                    command.Parameters.AddWithValue("@Anullim", true);
+
+
+                    command.CommandText =
+                        "UPDATE Shitje SET  shitjePerAnullim = @Anullim  WHERE ID = @ID";
+                    command.ExecuteNonQuery();
+
+
+                    sqlTran.Commit();
+
+                    connection.Close();
+
+                    return true;
+
+
+                }
+                catch(Exception e)
+                {
+                    connection.Close();
+                    return false;
+                }
+
+            }
+        }
+
+
+
+
+
 
 
 

@@ -142,7 +142,18 @@ namespace BarProject
             kamarierDropBox.SelectedIndex = -1;
             tavolineDropBox.SelectedIndex = -1;
 
-            foreach (DataModel shitje in shitjetList)
+            string produktEmer = string.Empty;
+            int kamarierID = -1;
+            int tavolineID = -1;
+
+
+            DateTime dataFillim;
+            DateTime dataMbarim;
+
+            bool data1Selected = false;
+            bool data2Selected = false;
+
+            foreach (DataModel shitje in dc.ngarkoTeGjitheShitjet())
             {
                 shitjeDataGrid.Rows.Add(shitje.ID, shitje.emerProdukt, shitje.ShitjeData.ToString("dd-MM-yyyy"), shitje.emerKamarier, shitje.Total, shitje.emerTavoline);
             }
@@ -185,6 +196,12 @@ namespace BarProject
             }
             
 
+        }
+
+        private void AnulloButton_Click(object sender, EventArgs e)
+        {
+            AnulloFatureForm anullo = new AnulloFatureForm();
+            anullo.Show();
         }
 
 

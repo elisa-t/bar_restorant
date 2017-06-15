@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnulloFatureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnulloFatureForm.Designer.cs">
+      <DependentUpon>AnulloFatureForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataController.cs" />
     <Compile Include="DataModel.cs" />
     <Compile Include="EditFurnitorForm.cs">
@@ -139,6 +145,12 @@
     <Compile Include="ShitjeForm.Designer.cs">
       <DependentUpon>ShitjeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShitjeKamarierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShitjeKamarierForm.Designer.cs">
+      <DependentUpon>ShitjeKamarierForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShtoFurnitorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +206,9 @@
     <Compile Include="ViewKategoriForm.Designer.cs">
       <DependentUpon>ViewKategoriForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AnulloFatureForm.resx">
+      <DependentUpon>AnulloFatureForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditFurnitorForm.resx">
       <DependentUpon>EditFurnitorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -247,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ShitjeForm.resx">
       <DependentUpon>ShitjeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShitjeKamarierForm.resx">
+      <DependentUpon>ShitjeKamarierForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ShtoFurnitorForm.resx">
       <DependentUpon>ShtoFurnitorForm.cs</DependentUpon>

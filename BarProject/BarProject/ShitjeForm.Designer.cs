@@ -33,18 +33,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.kamarierDropBox = new System.Windows.Forms.ComboBox();
             this.shitjeDataGrid = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tavolineDropBox = new System.Windows.Forms.ComboBox();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Produkt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Kamarier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tavoline = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tavolineDropBox = new System.Windows.Forms.ComboBox();
             this.pastroButton = new System.Windows.Forms.Button();
             this.dataFillimPicker = new System.Windows.Forms.DateTimePicker();
             this.dataMbarimPicker = new System.Windows.Forms.DateTimePicker();
             this.kerkoButton = new System.Windows.Forms.Button();
+            this.AnulloButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.shitjeDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,24 +101,6 @@
             this.shitjeDataGrid.Size = new System.Drawing.Size(640, 241);
             this.shitjeDataGrid.TabIndex = 4;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(321, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Tavoline";
-            // 
-            // tavolineDropBox
-            // 
-            this.tavolineDropBox.FormattingEnabled = true;
-            this.tavolineDropBox.Location = new System.Drawing.Point(324, 45);
-            this.tavolineDropBox.Name = "tavolineDropBox";
-            this.tavolineDropBox.Size = new System.Drawing.Size(129, 21);
-            this.tavolineDropBox.TabIndex = 6;
-            this.tavolineDropBox.SelectedIndexChanged += new System.EventHandler(this.tavolineDropBox_SelectedIndexChanged);
-            // 
             // ID
             // 
             this.ID.HeaderText = "ID";
@@ -153,6 +136,24 @@
             this.Tavoline.HeaderText = "Tavoline";
             this.Tavoline.Name = "Tavoline";
             this.Tavoline.ReadOnly = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(321, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Tavoline";
+            // 
+            // tavolineDropBox
+            // 
+            this.tavolineDropBox.FormattingEnabled = true;
+            this.tavolineDropBox.Location = new System.Drawing.Point(324, 45);
+            this.tavolineDropBox.Name = "tavolineDropBox";
+            this.tavolineDropBox.Size = new System.Drawing.Size(129, 21);
+            this.tavolineDropBox.TabIndex = 6;
+            this.tavolineDropBox.SelectedIndexChanged += new System.EventHandler(this.tavolineDropBox_SelectedIndexChanged);
             // 
             // pastroButton
             // 
@@ -190,11 +191,22 @@
             this.kerkoButton.UseVisualStyleBackColor = true;
             this.kerkoButton.Click += new System.EventHandler(this.kerkoButton_Click);
             // 
+            // AnulloButton
+            // 
+            this.AnulloButton.Location = new System.Drawing.Point(553, 25);
+            this.AnulloButton.Name = "AnulloButton";
+            this.AnulloButton.Size = new System.Drawing.Size(121, 41);
+            this.AnulloButton.TabIndex = 11;
+            this.AnulloButton.Text = "ANULLIME";
+            this.AnulloButton.UseVisualStyleBackColor = true;
+            this.AnulloButton.Click += new System.EventHandler(this.AnulloButton_Click);
+            // 
             // ShitjeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(735, 448);
+            this.ClientSize = new System.Drawing.Size(720, 414);
+            this.Controls.Add(this.AnulloButton);
             this.Controls.Add(this.kerkoButton);
             this.Controls.Add(this.dataMbarimPicker);
             this.Controls.Add(this.dataFillimPicker);
@@ -234,5 +246,6 @@
         private System.Windows.Forms.DateTimePicker dataFillimPicker;
         private System.Windows.Forms.DateTimePicker dataMbarimPicker;
         private System.Windows.Forms.Button kerkoButton;
+        private System.Windows.Forms.Button AnulloButton;
     }
 }

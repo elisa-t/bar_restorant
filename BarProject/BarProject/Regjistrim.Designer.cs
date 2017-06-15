@@ -38,6 +38,7 @@
             this.RoliBox = new System.Windows.Forms.TextBox();
             this.PasswordBox = new System.Windows.Forms.TextBox();
             this.RegjistrohuButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -115,7 +116,7 @@
             // 
             // RegjistrohuButton
             // 
-            this.RegjistrohuButton.Location = new System.Drawing.Point(87, 283);
+            this.RegjistrohuButton.Location = new System.Drawing.Point(12, 283);
             this.RegjistrohuButton.Name = "RegjistrohuButton";
             this.RegjistrohuButton.Size = new System.Drawing.Size(105, 35);
             this.RegjistrohuButton.TabIndex = 9;
@@ -123,11 +124,22 @@
             this.RegjistrohuButton.UseVisualStyleBackColor = true;
             this.RegjistrohuButton.Click += new System.EventHandler(this.RegjistrohuButton_Click);
             // 
+            // cancelButton
+            // 
+            this.cancelButton.Location = new System.Drawing.Point(140, 283);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(105, 35);
+            this.cancelButton.TabIndex = 10;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
             // Regjistrim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 361);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.RegjistrohuButton);
             this.Controls.Add(this.PasswordBox);
             this.Controls.Add(this.RoliBox);
@@ -159,5 +171,6 @@
         private System.Windows.Forms.TextBox RoliBox;
         private System.Windows.Forms.TextBox PasswordBox;
         private System.Windows.Forms.Button RegjistrohuButton;
+        private System.Windows.Forms.Button cancelButton;
     }
 }

@@ -10,7 +10,6 @@ namespace BarProject
     {
         public int ID;
         public string Emri;
-        public byte[] Foto;
         public decimal Cmimi;
         public int Sasia;
         public decimal Total;
